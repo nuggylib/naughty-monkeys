@@ -38,3 +38,11 @@ keep that in mind.
 
 * Instead of being limited to a single biome, we can have "biome-specific" Monkeys that all function the same way, but look different based on the biome in which they were found
    * Similar to how sheep have different colors, the Monkeys could look different from one another based on the biomes they are from
+
+## Mod versioning
+
+Normally for projects, I'd prefer to use Semantic Versioning. However, when modding, you also need to take into consideration
+the base version of the game that the mod is for. As such, MinecraftForge recommends the following format:
+* `MCVERSION-MAJORMOD.MAJORAPI.MINOR.PATCH`
+
+See [Forge Versioning docs](https://mcforge.readthedocs.io/en/1.18.x/gettingstarted/versioning/) for more information
