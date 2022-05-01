@@ -20,8 +20,8 @@ To create the base texture that will be reused on every face:
 1. Create a new texture
 2. **For `Type`, set to `Blank`** 
    * Important part
-   * Makes it so Blockbench will ignore your model's UVs when generating the "shape" of the texture template that you'll be drawing on
-     * The end result is a 16x16 image template that will be used for all faces
+   * Makes it so Blockbench will ignore your model's UVs when generating the "shape" of the texture template
+   * Instead, it will generate a rectangular texture template with whatever dimensions you specify in the next step
 3. Resolution should be 16 x 16
 4. Set the color to whatever you need it to be (this is just the "starting" color)
 5. Confirm
