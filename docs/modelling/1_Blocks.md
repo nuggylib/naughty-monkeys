@@ -10,6 +10,13 @@ To start a new Block model in Blockbench:
 5. Set UV mode to `Per-Face UV`
 6. Texture size should be 16 x 16
 
+**You aren't done yet!** By default, the display settings for a model created in Blockbench are unset, which will make
+the block appear too large when held by the player. The solution is to click the `Display` tab and modify it as-needed.
+**You don't need to "guess" the settings for a block; simply apply the default block preset TO ALL SLOTS as shown in the screenshot
+below:**
+
+![block preset screenshot](../images/block_preset.png)
+
 ## Texturing a block
 
 ### Blocks using the same texture on all faces
