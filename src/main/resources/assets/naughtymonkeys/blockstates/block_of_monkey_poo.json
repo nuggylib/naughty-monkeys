@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "naughtymonkeys:block/block_of_monkey_poo"
+      },
+      {
+        "model": "naughtymonkeys:block/block_of_monkey_poo",
+        "y": 180
+      }
+    ]
+  }
+}
