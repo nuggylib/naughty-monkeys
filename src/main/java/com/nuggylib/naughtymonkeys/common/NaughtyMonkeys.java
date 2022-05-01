@@ -1,15 +1,11 @@
 package com.nuggylib.naughtymonkeys.common;
 
 import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEntities;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -45,12 +41,17 @@ public class NaughtyMonkeys
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        // TODO: Find out why the blocks aren't registering (asset-related errors have been addressed - there is a code issue somewhere)
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
+        NaughtyMonkeysItems.ITEMS.register(modbus);
 //        NaughtyMonkeysItems.ITEMS.register(modbus);
 //        NaughtyMonkeysEntities.ENTITIES.register(modbus);
 //        NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
     }
 
+    /**
+     * Defines the Creative Tab for the Naughty Monkeys mod
+     */
     public static final CreativeModeTab TAB_NAUGHTY_MONKEYS = new CreativeModeTab("naughtymonkeys") {
         //  TODO: Update with an appropriate icon
         public ItemStack makeIcon() {
@@ -60,9 +61,7 @@ public class NaughtyMonkeys
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -87,12 +86,12 @@ public class NaughtyMonkeys
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-    }
+//    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+//    public static class RegistryEvents {
+//        @SubscribeEvent
+//        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
+//            // register a new block here
+//            LOGGER.info("HELLO from Register Block");
+//        }
+//    }
 }
