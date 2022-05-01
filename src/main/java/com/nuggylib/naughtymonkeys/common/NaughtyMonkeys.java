@@ -1,8 +1,11 @@
 package com.nuggylib.naughtymonkeys.common;
 
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysBlocks;
+import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
 import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysItems;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -43,10 +46,17 @@ public class NaughtyMonkeys
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
-        NaughtyMonkeysItems.ITEMS.register(modbus);
-        NaughtyMonkeysEntities.ENTITIES.register(modbus);
-        NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
+//        NaughtyMonkeysItems.ITEMS.register(modbus);
+//        NaughtyMonkeysEntities.ENTITIES.register(modbus);
+//        NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
     }
+
+    public static final CreativeModeTab TAB_NAUGHTY_MONKEYS = new CreativeModeTab("naughtymonkeys") {
+        //  TODO: Update with an appropriate icon
+        public ItemStack makeIcon() {
+            return new ItemStack( Items.LAVA_BUCKET );
+        }
+    };
 
     private void setup(final FMLCommonSetupEvent event)
     {
