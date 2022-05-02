@@ -1,7 +1,9 @@
 package com.nuggylib.naughtymonkeys.common;
 
 import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
+import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -17,6 +19,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 public class NaughtyMonkeys
 {
     public static final String ID = "naughtymonkeys";
+    private static final String MODEL_DIR = "textures/model/";
 
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
@@ -41,12 +45,11 @@ public class NaughtyMonkeys
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // TODO: Find out why the blocks aren't registering (asset-related errors have been addressed - there is a code issue somewhere)
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
         NaughtyMonkeysItems.ITEMS.register(modbus);
 //        NaughtyMonkeysItems.ITEMS.register(modbus);
-//        NaughtyMonkeysEntities.ENTITIES.register(modbus);
-//        NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
+        NaughtyMonkeysEntities.ENTITIES.register(modbus);
+        NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
     }
 
     /**
@@ -84,14 +87,11 @@ public class NaughtyMonkeys
         LOGGER.info("HELLO from server starting");
     }
 
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-//    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-//    public static class RegistryEvents {
-//        @SubscribeEvent
-//        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-//            // register a new block here
-//            LOGGER.info("HELLO from Register Block");
-//        }
-//    }
+    public static ResourceLocation prefix(String name) {
+        return new ResourceLocation(ID, name.toLowerCase(Locale.ROOT));
+    }
+
+    public static ResourceLocation getModelTexture(String name) {
+        return new ResourceLocation(ID, MODEL_DIR + name);
+    }
 }
