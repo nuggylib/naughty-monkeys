@@ -35,7 +35,7 @@ public class Monkey extends Animal {
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
-        return Mob.createMobAttributes()
+        return Monkey.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2);
     }
