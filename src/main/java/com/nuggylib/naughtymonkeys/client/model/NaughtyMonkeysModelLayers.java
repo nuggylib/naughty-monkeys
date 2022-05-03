@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.client.model;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
+import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 
