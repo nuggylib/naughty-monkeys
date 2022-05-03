@@ -18,6 +18,7 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class NaughtyMonkeys
     private static final String MODEL_DIR = "textures/model/";
 
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public NaughtyMonkeys() {
         // Register the setup method for modloading
@@ -57,7 +58,7 @@ public class NaughtyMonkeys
      */
     public static final CreativeModeTab TAB_NAUGHTY_MONKEYS = new CreativeModeTab("naughtymonkeys") {
         //  TODO: Update with an appropriate icon
-        public ItemStack makeIcon() {
+        public @NotNull ItemStack makeIcon() {
             return new ItemStack( Items.LAVA_BUCKET );
         }
     };

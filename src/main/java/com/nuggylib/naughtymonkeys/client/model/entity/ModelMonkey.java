@@ -43,6 +43,7 @@ public class ModelMonkey<T extends Monkey> extends EntityModel<T> {
 		this.leg_right = root.getChild("leg_right");
 	}
 
+	// TODO: Where do I call this?
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

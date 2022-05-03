@@ -1,24 +1,28 @@
 package com.nuggylib.naughtymonkeys.common.registries.entity;
 
-import com.nuggylib.naughtymonkeys.client.model.ModelLayers;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;
-import com.nuggylib.naughtymonkeys.client.renderer.entity.SimianRenderer;
+import com.nuggylib.naughtymonkeys.client.renderer.entity.MonkeyRenderer;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
+import com.nuggylib.naughtymonkeys.common.config.Config;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome.*;
+import net.minecraft.world.level.biome.MobSpawnSettings.*;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.common.ForgeConfigSpec.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -33,6 +37,7 @@ import net.minecraftforge.registries.RegistryObject;
  *
  * @see <a href="https://github.com/TeamTwilight/twilightforest/blob/1.18.x/src/main/java/twilightforest/entity/TFEntities.java">Twilight Forest repo - TFEntities.java</a>
  */
+@Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NaughtyMonkeysEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, NaughtyMonkeys.ID);
@@ -87,7 +92,24 @@ public class NaughtyMonkeysEntities {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(MONKEY.get(), m -> new SimianRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelLayers.MONKEY)), 0.7F, "monkey.png"));
+        event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.7F, "monkey.png"));
+    }
+
+    @Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID)
+    static class EntitySpawns {
+
+        private static void registerWorldSpawns(BiomeLoadingEvent event, EntityType<?> entity, MobCategory classification, IntValue weight, BiomeCategory...categories) {
+            for (BiomeCategory category : categories) {
+                if (event.getCategory() == category) {
+                    event.getSpawns().addSpawn(classification, new SpawnerData(entity, weight.get(), 1, 1));
+                }
+            }
+        }
+
+        @SubscribeEvent
+        public static void createEntitySpawns(BiomeLoadingEvent event) {
+            registerWorldSpawns(event, MONKEY.get(), MobCategory.CREATURE, Config.COMMON.MONKEY_WEIGHT, BiomeCategory.PLAINS);
+        }
     }
 
 }
