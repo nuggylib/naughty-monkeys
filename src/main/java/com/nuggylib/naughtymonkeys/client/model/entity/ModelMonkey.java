@@ -20,13 +20,14 @@ import net.minecraft.world.entity.Entity;
  */
 public class ModelMonkey<T extends Entity> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(NaughtyMonkeys.ID, "monkey"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(NaughtyMonkeys.ID, "monkey"), "bb_main");
 	private final ModelPart bb_main;
 
 	public ModelMonkey(ModelPart root) {
 		this.bb_main = root.getChild("bb_main");
 	}
 
+	// TODO: Where do I call this?
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

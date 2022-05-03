@@ -1,8 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.registries.entity;
 
-import com.nuggylib.naughtymonkeys.client.model.ModelLayers;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;
-import com.nuggylib.naughtymonkeys.client.renderer.entity.SimianRenderer;
+import com.nuggylib.naughtymonkeys.client.renderer.entity.MonkeyRenderer;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.config.Config;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
@@ -93,7 +92,7 @@ public class NaughtyMonkeysEntities {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(MONKEY.get(), m -> new SimianRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelLayers.MONKEY)), 0.7F, "monkey.png"));
+        event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.7F, "monkey.png"));
     }
 
     @Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID)
