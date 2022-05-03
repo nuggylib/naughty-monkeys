@@ -2,6 +2,7 @@ package com.nuggylib.naughtymonkeys.common.entity;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class Monkey extends Animal {
+    private int eatAnimationTick;
     public Monkey(EntityType<? extends Animal> type, Level world) {
         super(type, world);
     }
@@ -38,6 +40,15 @@ public class Monkey extends Animal {
         return Monkey.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2);
+    }
+
+    public float getHeadEatAngleScale(float p_29883_) {
+        if (this.eatAnimationTick > 4 && this.eatAnimationTick <= 36) {
+            float f = ((float)(this.eatAnimationTick - 4) - p_29883_) / 32.0F;
+            return ((float)Math.PI / 5F) + 0.21991149F * Mth.sin(f * 28.7F);
+        } else {
+            return this.eatAnimationTick > 0 ? ((float)Math.PI / 5F) : this.getXRot() * ((float)Math.PI / 180F);
+        }
     }
 
     @Nullable
