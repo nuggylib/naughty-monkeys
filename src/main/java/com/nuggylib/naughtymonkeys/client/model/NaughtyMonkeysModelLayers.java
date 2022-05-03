@@ -9,7 +9,7 @@ public class NaughtyMonkeysModelLayers {
     public static final ModelLayerLocation MONKEY = register("monkey");
 
     private static ModelLayerLocation register(String p_171294_) {
-        return register(p_171294_, "bb_main");
+        return register(p_171294_, "main");
     }
     private static ModelLayerLocation register(String p_171301_, String p_171302_) {
         return new ModelLayerLocation(new ResourceLocation(NaughtyMonkeys.ID, p_171301_), p_171302_);
