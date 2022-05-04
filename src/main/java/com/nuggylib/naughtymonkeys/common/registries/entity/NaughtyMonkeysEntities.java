@@ -124,7 +124,7 @@ public class NaughtyMonkeysEntities {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.7F, "monkey.png"));
+        event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.4F, "monkey.png"));
         event.registerEntityRenderer(THROWN_MONKEY_POO.get(), ThrownItemRenderer::new);
     }
 
