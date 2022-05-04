@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.entity;
 
+import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -28,7 +29,7 @@ public class Monkey extends Animal {
         goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
         goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         // TODO: Change this to bananas, once we have them
-        goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.WHEAT), false));
+        goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
         goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
         goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.5D, 1.8D));
         goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
