@@ -5,7 +5,9 @@ import com.nuggylib.naughtymonkeys.client.renderer.entity.MonkeyRenderer;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.config.Config;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
+import com.nuggylib.naughtymonkeys.common.entity.projectile.ThrownMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
@@ -43,20 +45,49 @@ public class NaughtyMonkeysEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, NaughtyMonkeys.ID);
     public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS, NaughtyMonkeys.ID);
 
-    public static final RegistryObject<EntityType<Monkey>> MONKEY = make(NaughtyMonkeys.prefix("monkey"), Monkey::new, MobCategory.CREATURE, 0.7F, 1.8F, 0x7b4d2e, 0x4b241d);
+    public static final RegistryObject<EntityType<Monkey>> MONKEY = make(NaughtyMonkeys.prefix("monkey"), Monkey::new, MobCategory.CREATURE, 1.0F, 1.0F, 0x7b4d2e, 0x4b241d, false);
+    public static final RegistryObject<EntityType<ThrownMonkeyPoo>> THROWN_MONKEY_POO = make(NaughtyMonkeys.prefix("monkey_poo"), ThrownMonkeyPoo::new, MobCategory.MISC, 1.0F, 1.0F , 0, 0, true);
 
-    private static <E extends Entity> RegistryObject<EntityType<E>> make(ResourceLocation id, EntityType.EntityFactory<E> factory, MobCategory classification, float width, float height, int primary, int secondary) {
+    /**
+     * Make RegistryObject for given mob entity type
+     *
+     * @param id                    The prefixed identifier for the entity; use `NaughtyMonkeys.prefix()` helper to simplify this
+     * @param factory               The factory class; typically just a method reference to the entity class constructor
+     * @param classification        The category of the entity; generally a MobCategory for mob entities
+     * @param width                 TODO; changes had no effect on monkey - further testing required
+     * @param height                TODO; changes had no effect on monkey - further testing required
+     * @param primary               Hex-notation primary color to use for the spawn egg of the entity
+     * @param secondary             Hex-notation secondary color to use for the spawn egg of the entity
+     * @return                      Registry object for the given entity type
+     * @param <E>                   The base Entity class to create a RegistryObject for
+     * @see <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">Java - Method References</a>
+     * @see <a href="https://www.cs.utah.edu/~germain/PPS/Topics/color.html">Hex Notation Overview</a>
+     */
+    private static <E extends Entity> RegistryObject<EntityType<E>> make(ResourceLocation id, EntityType.EntityFactory<E> factory, MobCategory classification, float width, float height, int primary, int secondary, boolean throwable) {
+        if (throwable) {
+            return makeThrowable(id, factory, classification, width, height, false, primary, secondary);
+        }
         return make(id, factory, classification, width, height, false, primary, secondary);
     }
 
+    /**
+     * Overloaded version of the make() method from above.
+     *
+     * This overloaded implementation adds a `fireproof` field. `fireproof` is a required field for the `build` method,
+     * which is why this is called before building the RegistryObject. At the moment, all entities just have `fireproof`
+     * set to `false`.
+     */
     private static <E extends Entity> RegistryObject<EntityType<E>> make(ResourceLocation id, EntityType.EntityFactory<E> factory, MobCategory classification, float width, float height, boolean fireproof, int primary, int secondary) {
         return build(id, makeBuilder(factory, classification, width, height, 80, 3), fireproof, primary, secondary);
     }
 
-    private static <E extends Entity> RegistryObject<EntityType<E>> build(ResourceLocation id, EntityType.Builder<E> builder, boolean fireProof) {
-        return build(id, builder, fireProof, 0, 0);
+    private static <E extends Entity> RegistryObject<EntityType<E>> makeThrowable(ResourceLocation id, EntityType.EntityFactory<E> factory, MobCategory classification, float width, float height, boolean fireproof, int primary, int secondary) {
+        return build(id, makeBuilder(factory, classification, width, height, 4, 10), fireproof, primary, secondary);
     }
 
+    /**
+     * RegistryObject builder for entities that SHOULD have a spawn egg
+     */
     @SuppressWarnings("unchecked")
     private static <E extends Entity> RegistryObject<EntityType<E>> build(ResourceLocation id, EntityType.Builder<E> builder, boolean fireproof, int primary, int secondary) {
         if(fireproof) builder.fireImmune();
@@ -67,10 +98,11 @@ public class NaughtyMonkeysEntities {
         return ret;
     }
 
-    private static <E extends Entity> EntityType.Builder<E> makeCastedBuilder(@SuppressWarnings("unused") Class<E> cast, EntityType.EntityFactory<E> factory, float width, float height, int range, int interval) {
-        return makeBuilder(factory, MobCategory.MISC, width, height, range, interval);
-    }
-
+    /**
+     * Entity factory builder
+     *
+     * Sets up the entity type builder to use within the build method
+     */
     private static <E extends Entity> EntityType.Builder<E> makeBuilder(EntityType.EntityFactory<E> factory, MobCategory classification, float width, float height, int range, int interval) {
         return EntityType.Builder.of(factory, classification).
                 sized(width, height).
@@ -92,7 +124,8 @@ public class NaughtyMonkeysEntities {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.7F, "monkey.png"));
+        event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.4F, "monkey.png"));
+        event.registerEntityRenderer(THROWN_MONKEY_POO.get(), ThrownItemRenderer::new);
     }
 
     @Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID)
