@@ -28,7 +28,6 @@ public class Monkey extends Animal {
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
         goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        // TODO: Change this to bananas, once we have them
         goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
         goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
         goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.5D, 1.8D));
