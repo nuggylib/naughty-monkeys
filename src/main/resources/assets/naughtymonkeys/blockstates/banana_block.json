@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "naughtymonkeys:block/banana_block"
+      },
+      {
+        "model": "naughtymonkeys:block/banana_block",
+        "y": 180
+      }
+    ]
+  }
+}
