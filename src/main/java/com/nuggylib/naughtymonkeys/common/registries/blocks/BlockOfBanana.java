@@ -3,9 +3,9 @@ package com.nuggylib.naughtymonkeys.common.registries.blocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-public class BananaBlock extends Block {
+public class BlockOfBanana extends Block {
 
-    protected BananaBlock(BlockBehaviour.Properties properties) {
+    protected BlockOfBanana(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
