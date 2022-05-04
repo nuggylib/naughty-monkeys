@@ -57,9 +57,8 @@ public class NaughtyMonkeys
      * Defines the Creative Tab for the Naughty Monkeys mod
      */
     public static final CreativeModeTab TAB_NAUGHTY_MONKEYS = new CreativeModeTab("naughtymonkeys") {
-        //  TODO: Update with an appropriate icon
         public @NotNull ItemStack makeIcon() {
-            return new ItemStack( Items.LAVA_BUCKET );
+            return new ItemStack( NaughtyMonkeysItems.BANANA.get() );
         }
     };
 
