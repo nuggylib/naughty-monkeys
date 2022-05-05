@@ -1,6 +1,8 @@
 package com.nuggylib.naughtymonkeys.common.registries.blocks;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
+import com.nuggylib.naughtymonkeys.common.block.BlockOfBanana;
+import com.nuggylib.naughtymonkeys.common.block.BlockOfMonkeyPoo;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
