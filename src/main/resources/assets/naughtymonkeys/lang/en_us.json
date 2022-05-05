@@ -1,5 +1,8 @@
 {
   "block.naughtymonkeys.block_of_monkey_poo": "Block of Monkey Poo",
   "block.naughtymonkeys.block_of_banana": "Block Mushed Bananas",
+  "item.naughtymonkeys.banana": "Banana",
+  "item.naughtymonkeys.monkey_poo": "Monkey Poo",
+  "item.naughtymonkeys.monkey_spawn_egg": "Monkey Spawn Egg",
   "itemGroup.naughtymonkeys": "Naughty Monkeys"
 }
