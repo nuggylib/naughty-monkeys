@@ -31,6 +31,8 @@ public class NaughtyMonkeysBlocks {
 
     public static final RegistryObject<Block> BLOCK_OF_MONKEY_POO = BLOCKS.register("block_of_monkey_poo", () -> new BlockOfMonkeyPoo(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
     public static final RegistryObject<Block> BLOCK_OF_BANANA = BLOCKS.register("block_of_banana", () -> new BlockOfBanana(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
+    // TODO: Reference OAK_LEAVES
+    public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> leaves(SoundType.GRASS));
 
     private static LeavesBlock leaves(SoundType soundType) {
         return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isValidSpawn(NaughtyMonkeysBlocks::monkey).isSuffocating(NaughtyMonkeysBlocks::never).isViewBlocking(NaughtyMonkeysBlocks::never));
