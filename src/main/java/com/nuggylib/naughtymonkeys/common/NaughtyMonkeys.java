@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.common;
 
 import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
+import com.nuggylib.naughtymonkeys.common.registries.effect.NaughtyMonkeysEffects;
 import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
 import net.minecraft.resources.ResourceLocation;
@@ -48,9 +49,9 @@ public class NaughtyMonkeys
 
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
         NaughtyMonkeysItems.ITEMS.register(modbus);
-//        NaughtyMonkeysItems.ITEMS.register(modbus);
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
+        NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
     }
 
     /**
