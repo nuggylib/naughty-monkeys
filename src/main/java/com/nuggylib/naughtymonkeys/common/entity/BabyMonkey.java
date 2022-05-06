@@ -11,16 +11,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-
 public class BabyMonkey extends Animal {
-
 	private int eatAnimationTick;
 	public BabyMonkey(EntityType<? extends Animal> type, Level world) {
 		super(type, world);
@@ -40,7 +37,7 @@ public class BabyMonkey extends Animal {
 	}
 
 	public static AttributeSupplier.Builder registerAttributes() {
-		return BabyMonkey.createMobAttributes()
+		return Monkey.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 10.0)
 				.add(Attributes.MOVEMENT_SPEED, 0.2);
 	}
