@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.registries.feature;
 
+import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -14,7 +15,11 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
+@Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NaughtyMonkeysFeatures {
 
     public static ConfiguredFeature<TreeConfiguration, ?> BANANA_PLANT;
@@ -33,6 +38,13 @@ public class NaughtyMonkeysFeatures {
 
     private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
         return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key, configuredFeature);
+    }
+
+    @SubscribeEvent
+    public static void onCommonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            init();
+        });
     }
 
 }
