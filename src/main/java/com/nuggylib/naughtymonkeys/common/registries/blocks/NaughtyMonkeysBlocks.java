@@ -4,13 +4,9 @@ import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfBanana;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.block.grower.BananaPlantGrower;
-import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -30,7 +26,20 @@ public class NaughtyMonkeysBlocks {
 
     public static final RegistryObject<Block> BLOCK_OF_MONKEY_POO = BLOCKS.register("block_of_monkey_poo", () -> new BlockOfMonkeyPoo(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
     public static final RegistryObject<Block> BLOCK_OF_BANANA = BLOCKS.register("block_of_banana", () -> new BlockOfBanana(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
-    public static final RegistryObject<Block> BANANA_STEM = BLOCKS.register("banana_stem", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BANANA_STEM = BLOCKS.register("banana_stem", () -> log(MaterialColor.WOOD, MaterialColor.PODZOL));
     public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new SaplingBlock(new BananaPlantGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+
+    /**
+     * Helper method taken from Minecraft's {@link net.minecraft.world.level.block.Blocks} class used to generate log blocks for registration.
+     *
+     * @param barkColor         The {@link net.minecraft.world.level.material.MaterialColor} to use for the log's bark (outer) faces
+     * @param coreColor         The {@link net.minecraft.world.level.material.MaterialColor} to use for the log's core (inner/rings) faces
+     * @return                  A {@link net.minecraft.world.level.block.RotatedPillarBlock}
+     */
+    private static RotatedPillarBlock log(MaterialColor barkColor, MaterialColor coreColor) {
+        return new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, (blockState) -> {
+            return blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? barkColor : coreColor;
+        }).strength(2.0F).sound(SoundType.WOOD));
+    }
     
 }
