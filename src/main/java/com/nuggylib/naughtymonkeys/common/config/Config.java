@@ -14,10 +14,12 @@ public class Config {
     public static class Common {
         // Entities
         public final ForgeConfigSpec.IntValue MONKEY_WEIGHT;
+        public final ForgeConfigSpec.IntValue BABY_MONKEY_WEIGHT;
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("Entities");
             MONKEY_WEIGHT = builder.defineInRange("monkey_weight", 4, 1, 1000000);
+            BABY_MONKEY_WEIGHT = builder.defineInRange("baby_monkey_weight", 2, 1, 1000000);
             builder.pop();
         }
     }
