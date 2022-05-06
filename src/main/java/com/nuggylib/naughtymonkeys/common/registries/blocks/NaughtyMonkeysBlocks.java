@@ -3,13 +3,9 @@ package com.nuggylib.naughtymonkeys.common.registries.blocks;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfBanana;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfMonkeyPoo;
-import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.BlockGetter;
+import com.nuggylib.naughtymonkeys.common.block.grower.BananaPlantGrower;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -30,18 +26,6 @@ public class NaughtyMonkeysBlocks {
     public static final RegistryObject<Block> BLOCK_OF_MONKEY_POO = BLOCKS.register("block_of_monkey_poo", () -> new BlockOfMonkeyPoo(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
     public static final RegistryObject<Block> BLOCK_OF_BANANA = BLOCKS.register("block_of_banana", () -> new BlockOfBanana(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
     public static final RegistryObject<Block> BANANA_STEM = BLOCKS.register("banana_stem", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F).sound(SoundType.WOOD)));
-    // TODO: Reference OAK_LEAVES
-//    public static final RegistryObject<Block> BANANA_LEAVES = BLOCKS.register("banana_leaves", () -> leaves(SoundType.GRASS));
+    public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new SaplingBlock(new BananaPlantGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
-    private static LeavesBlock leaves(SoundType soundType) {
-        return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isValidSpawn(NaughtyMonkeysBlocks::monkey).isSuffocating(NaughtyMonkeysBlocks::never).isViewBlocking(NaughtyMonkeysBlocks::never));
-    }
-
-    private static Boolean monkey(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> entityType) {
-        return entityType == NaughtyMonkeysEntities.MONKEY.get();
-    }
-
-    private static boolean never(BlockState p_50806_, BlockGetter p_50807_, BlockPos p_50808_) {
-        return false;
-    }
 }

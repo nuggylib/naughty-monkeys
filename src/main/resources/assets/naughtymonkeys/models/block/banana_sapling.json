@@ -1,0 +1,6 @@
+{
+  "parent": "naughtymonkeys:block/cross",
+  "textures": {
+    "cross": "naughtymonkeys:block/banana_sapling"
+  }
+}
