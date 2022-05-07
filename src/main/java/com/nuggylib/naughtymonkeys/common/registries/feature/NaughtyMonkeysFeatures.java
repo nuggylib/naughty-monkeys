@@ -6,7 +6,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -33,7 +32,7 @@ public class NaughtyMonkeysFeatures {
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createBananaPlant() {
-        return createStraightBlobTree(NaughtyMonkeysBlocks.BANANA_STEM.get(), Blocks.JUNGLE_LEAVES, 4, 2, 0, 2).ignoreVines();
+        return createStraightBlobTree(NaughtyMonkeysBlocks.BANANA_STEM.get(), NaughtyMonkeysBlocks.BANANA_LEAVES.get(), 4, 2, 0, 2).ignoreVines();
     }
 
     private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {

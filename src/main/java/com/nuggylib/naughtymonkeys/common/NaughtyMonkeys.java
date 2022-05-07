@@ -7,7 +7,6 @@ import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,7 +21,6 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(NaughtyMonkeys.ID)
@@ -52,6 +50,7 @@ public class NaughtyMonkeys
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
+
     }
 
     /**
