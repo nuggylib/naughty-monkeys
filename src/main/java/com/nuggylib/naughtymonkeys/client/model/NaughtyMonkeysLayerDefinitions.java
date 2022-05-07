@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.client.model;
 
+import com.nuggylib.naughtymonkeys.client.model.entity.ModelBabyMonkey;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,5 +13,6 @@ public class NaughtyMonkeysLayerDefinitions {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(NaughtyMonkeysModelLayers.MONKEY, ModelMonkey::createBodyLayer);
+        event.registerLayerDefinition(NaughtyMonkeysModelLayers.BABY_MONKEY, ModelBabyMonkey::createBodyLayer);
     }
 }
