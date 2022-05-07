@@ -1,0 +1,6 @@
+{
+  "parent": "naughtymonkeys:block/leaves",
+  "textures": {
+    "all": "naughtymonkeys:block/banana_leaves"
+  }
+}
