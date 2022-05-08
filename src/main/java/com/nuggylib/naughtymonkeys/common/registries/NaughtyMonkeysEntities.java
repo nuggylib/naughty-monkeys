@@ -1,9 +1,12 @@
 package com.nuggylib.naughtymonkeys.common.registries;
 
+import com.nuggylib.naughtymonkeys.client.model.entity.ModelBabyMonkey;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;
+import com.nuggylib.naughtymonkeys.client.renderer.entity.BabyMonkeyRenderer;
 import com.nuggylib.naughtymonkeys.client.renderer.entity.MonkeyRenderer;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.config.Config;
+import com.nuggylib.naughtymonkeys.common.entity.BabyMonkey;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.entity.projectile.ThrownMonkeyPoo;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -45,6 +48,7 @@ public class NaughtyMonkeysEntities {
     public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS, NaughtyMonkeys.ID);
 
     public static final RegistryObject<EntityType<Monkey>> MONKEY = make(NaughtyMonkeys.prefix("monkey"), Monkey::new, MobCategory.CREATURE, 1.0F, 1.0F, 0x7b4d2e, 0x4b241d, false);
+    public static final RegistryObject<EntityType<BabyMonkey>> BABY_MONKEY = make(NaughtyMonkeys.prefix("baby_monkey"), BabyMonkey::new, MobCategory.CREATURE, 1.0F, 1.0F, 0x7b4d2e, 0x4b241d, false);
     public static final RegistryObject<EntityType<ThrownMonkeyPoo>> THROWN_MONKEY_POO = make(NaughtyMonkeys.prefix("monkey_poo"), ThrownMonkeyPoo::new, MobCategory.MISC, 1.0F, 1.0F , 0, 0, true);
 
     /**
@@ -113,17 +117,20 @@ public class NaughtyMonkeysEntities {
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> evt) {
         SpawnPlacements.register(MONKEY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+        SpawnPlacements.register(BABY_MONKEY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     }
 
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(MONKEY.get(), Monkey.registerAttributes().build());
+        event.put(BABY_MONKEY.get(), BabyMonkey.registerAttributes().build());
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.4F, "monkey.png"));
+        event.registerEntityRenderer(BABY_MONKEY.get(), m -> new BabyMonkeyRenderer<>(m, new ModelBabyMonkey<>(m.bakeLayer(ModelBabyMonkey.LAYER_LOCATION)), 0.4F, "baby_monkey.png"));
         event.registerEntityRenderer(THROWN_MONKEY_POO.get(), ThrownItemRenderer::new);
     }
 
@@ -141,6 +148,7 @@ public class NaughtyMonkeysEntities {
         @SubscribeEvent
         public static void createEntitySpawns(BiomeLoadingEvent event) {
             registerWorldSpawns(event, MONKEY.get(), MobCategory.CREATURE, Config.COMMON.MONKEY_WEIGHT, BiomeCategory.PLAINS);
+            registerWorldSpawns(event, BABY_MONKEY.get(), MobCategory.CREATURE, Config.COMMON.BABY_MONKEY_WEIGHT, BiomeCategory.PLAINS);
         }
     }
 
