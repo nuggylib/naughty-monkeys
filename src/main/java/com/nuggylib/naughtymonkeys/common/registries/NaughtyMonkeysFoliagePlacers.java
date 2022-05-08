@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.registries.type;
+package com.nuggylib.naughtymonkeys.common.registries;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.feature.BananaPlantFoliagePlacer;

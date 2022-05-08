@@ -1,10 +1,9 @@
-package com.nuggylib.naughtymonkeys.common.registries.blocks;
+package com.nuggylib.naughtymonkeys.common.registries;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfBanana;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.block.grower.BananaPlantGrower;
-import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;

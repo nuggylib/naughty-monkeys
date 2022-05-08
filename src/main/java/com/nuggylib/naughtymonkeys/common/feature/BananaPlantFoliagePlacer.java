@@ -3,7 +3,7 @@ package com.nuggylib.naughtymonkeys.common.feature;
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.nuggylib.naughtymonkeys.common.registries.type.NaughtyMonkeysFoliagePlacers;
+import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysFoliagePlacers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;

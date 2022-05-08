@@ -1,8 +1,7 @@
-package com.nuggylib.naughtymonkeys.common.registries.feature;
+package com.nuggylib.naughtymonkeys.common.registries;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.feature.BananaPlantFoliagePlacer;
-import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.util.valueproviders.ConstantInt;

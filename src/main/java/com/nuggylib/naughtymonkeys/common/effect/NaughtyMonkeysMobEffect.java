@@ -1,6 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.effect;
 
-import com.nuggylib.naughtymonkeys.common.registries.effect.NaughtyMonkeysEffects;
+import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEffects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
