@@ -15,6 +15,8 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import java.util.Random;
 import java.util.function.BiConsumer;
 
+import static java.lang.Math.abs;
+
 public class BananaPlantFoliagePlacer extends FoliagePlacer {
     /**
      * <h3>The number of log blocks at the top of the given tree's "trunk" to be covered by foliage; the "height" of the
@@ -55,10 +57,11 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected void createFoliage(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, int p_161426_, FoliageAttachment foliageAttachment, int offset, int mid, int count) {
-        for(int i = count; i >= count - offset; --i) {
-            int j = Math.max(mid + foliageAttachment.radiusOffset() - 1 - i / 2, 0);
-            this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), j, i, foliageAttachment.doubleTrunk());
-        }
+//        for(int i = count; i >= count - offset; --i) {
+//            int j = Math.max(mid + foliageAttachment.radiusOffset() - 1 - i / 2, 0);
+//            this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), j, i, foliageAttachment.doubleTrunk());
+//        }
+        this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), 3, 0, foliageAttachment.doubleTrunk());
     }
 
     @Override
@@ -66,20 +69,49 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
         return this.height;
     }
 
+    /**
+     * Determine if the foliage placer should skip placing the given leaf block position
+     */
     @Override
-    protected boolean shouldSkipLocation(Random p_68562_, int p_68563_, int p_68564_, int p_68565_, int p_68566_, boolean p_68567_) {
-        return false;
+    protected boolean shouldSkipLocation(Random random, int xOffset, int yOffset, int zOffset, int limitFromTrunk, boolean isDoubleTrunk) {
+        if (xOffset == 0) {
+            return false;
+        }
+        return zOffset != 0;
     }
 
+    /**
+     * <b>Places a "row" of leaf blocks</b>
+     * <br/>
+     * <p>
+     *     A <b>row</b> of leaves in this meth
+     * </p>
+     *
+     * @param reader
+     * @param posAndStateBiConsumer
+     * @param random
+     * @param tree
+     * @param logBlockPos
+     * @param limitFromTrunk                    The max distance of leaf blocks extending out from the trunk (does not include trunk in count)
+     * @param topLogOffset                      The offset count of blocks from the top log; determines where the leaves row will start, vertically (if set to 0, the row will be set "on top of" the last log block)
+     * @param isDoubleTrunk
+     */
     @Override
-    public void placeLeavesRow(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, BlockPos logBlockPos, int limit, int p_161444_, boolean isDoubleTrunk) {
+    public void placeLeavesRow(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, BlockPos logBlockPos, int limitFromTrunk, int topLogOffset, boolean isDoubleTrunk) {
         int trunkOffset = isDoubleTrunk ? 1 : 0;
+
+        // Instantiate the leaf block to be placed
         BlockPos.MutableBlockPos newLeafBlockPosition = new BlockPos.MutableBlockPos();
 
-        for(int j = -limit; j <= limit + trunkOffset; ++j) {
-            for(int k = -limit; k <= limit + trunkOffset; ++k) {
-                if (!this.shouldSkipLocationSigned(random, j, p_161444_, k, limit, isDoubleTrunk)) {
-                    newLeafBlockPosition.setWithOffset(logBlockPos, j, p_161444_, k);
+        // Double loop to create a "square" of leaf blocks; a single square level is the same thing as a "row" for this logic
+        for(int xOffset = -limitFromTrunk; xOffset <= limitFromTrunk + trunkOffset; ++xOffset) {
+            for(int zOffset = -limitFromTrunk; zOffset <= limitFromTrunk + trunkOffset; ++zOffset) {
+                if (!this.shouldSkipLocation(random, xOffset, topLogOffset, zOffset, limitFromTrunk, isDoubleTrunk)) {
+
+                    // Mutate the new leaf block's position - starts from the base log block position, then applies offset
+                    newLeafBlockPosition.setWithOffset(logBlockPos, xOffset, topLogOffset, zOffset);
+
+                    // Attempt to place the leaf block
                     tryPlaceLeaf(reader, posAndStateBiConsumer, random, tree, newLeafBlockPosition);
                 }
             }
