@@ -57,11 +57,8 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected void createFoliage(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, int p_161426_, FoliageAttachment foliageAttachment, int offset, int mid, int count) {
-//        for(int i = count; i >= count - offset; --i) {
-//            int j = Math.max(mid + foliageAttachment.radiusOffset() - 1 - i / 2, 0);
-//            this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), j, i, foliageAttachment.doubleTrunk());
-//        }
-        this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), 3, 0, foliageAttachment.doubleTrunk());
+        this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), 3, -1, foliageAttachment.doubleTrunk());
+        this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), 1, 0, foliageAttachment.doubleTrunk());
     }
 
     @Override
@@ -82,11 +79,7 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
 
     /**
      * <b>Places a "row" of leaf blocks</b>
-     * <br/>
-     * <p>
-     *     A <b>row</b> of leaves in this meth
-     * </p>
-     *
+     * 
      * @param reader
      * @param posAndStateBiConsumer
      * @param random
@@ -118,4 +111,5 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
         }
 
     }
+
 }
