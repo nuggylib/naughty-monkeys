@@ -17,7 +17,8 @@ import java.util.function.BiConsumer;
 
 public class BananaPlantFoliagePlacer extends FoliagePlacer {
     /**
-     * <h3>The number of log blocks at the top of the given tree's "trunk" to be covered by foliage</h3>
+     * <h3>The number of log blocks at the top of the given tree's "trunk" to be covered by foliage; the "height" of the
+     * foliage blocks in contact with the tree's trunk</h3>
      * <p>
      *     For example, if a tree's trunk is 5 blocks high, and this <code>height</code> value was set to 3, then the top
      *     three log blocks would be covered by foliage and the last two blocks would be the "exposed" (or bottom) part
