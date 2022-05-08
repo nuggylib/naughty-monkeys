@@ -16,12 +16,27 @@ import java.util.Random;
 import java.util.function.BiConsumer;
 
 public class BananaPlantFoliagePlacer extends FoliagePlacer {
+    /**
+     * <h3>The number of log blocks at the top of the given tree's "trunk" to be covered by foliage</h3>
+     * <p>
+     *     For example, if a tree's trunk is 5 blocks high, and this <code>height</code> value was set to 3, then the top
+     *     three log blocks would be covered by foliage and the last two blocks would be the "exposed" (or bottom) part
+     *     of the tree.
+     * </p>
+     * <br />
+     * <p>
+     *     As an example for an edge case, if you have a tree whose trunk is 5 blocks high, but this <code>height</code> value
+     *     is set to something <b>higher</b> than the height (such as 10), then the tree simply wouldn't have any exposed
+     *     portion of the trunk; all trunk logs would be covered by foliage in this case.
+     * </p>
+     * 
+     */
     protected final int height;
-    public static final Codec<BananaPlantFoliagePlacer> CODEC = RecordCodecBuilder.create((p_68427_) -> blobParts(p_68427_).apply(p_68427_, BananaPlantFoliagePlacer::new));
-    protected static <P extends BananaPlantFoliagePlacer> Products.P3<RecordCodecBuilder.Mu<P>, IntProvider, IntProvider, Integer> blobParts(RecordCodecBuilder.Instance<P> p_68414_) {
-        return foliagePlacerParts(p_68414_).and(Codec.intRange(0, 16).fieldOf("height").forGetter((p_68412_) -> {
-            return p_68412_.height;
-        }));
+    
+    public static final Codec<BananaPlantFoliagePlacer> CODEC = RecordCodecBuilder.create((plantFoliagePlacerInstance) -> blobParts(plantFoliagePlacerInstance).apply(plantFoliagePlacerInstance, BananaPlantFoliagePlacer::new));
+    
+    protected static <P extends BananaPlantFoliagePlacer> Products.P3<RecordCodecBuilder.Mu<P>, IntProvider, IntProvider, Integer> blobParts(RecordCodecBuilder.Instance<P> plantFoliagePlacerInstance) {
+        return foliagePlacerParts(plantFoliagePlacerInstance).and(Codec.intRange(0, 16).fieldOf("height").forGetter((placer) -> placer.height));
     }
 
     /**
@@ -29,7 +44,7 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
      */
     public BananaPlantFoliagePlacer(IntProvider radius, IntProvider offset, int unusedHeight) {
         super(radius, offset);
-        this.height = 3;
+        this.height = 2;
     }
 
     @Override
@@ -38,8 +53,8 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, int p_161426_, FoliageAttachment foliageAttachment, int min, int mid, int max) {
-        for(int i = max; i >= max - min; --i) {
+    protected void createFoliage(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, int p_161426_, FoliageAttachment foliageAttachment, int offset, int mid, int count) {
+        for(int i = count; i >= count - offset; --i) {
             int j = Math.max(mid + foliageAttachment.radiusOffset() - 1 - i / 2, 0);
             this.placeLeavesRow(reader, posAndStateBiConsumer, random, tree, foliageAttachment.pos(), j, i, foliageAttachment.doubleTrunk());
         }
