@@ -71,13 +71,13 @@ public class BananaPlantFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    public void placeLeavesRow(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, BlockPos logBlockPos, int p_161443_, int p_161444_, boolean isDoubleTrunk) {
-        int i = isDoubleTrunk ? 1 : 0;
+    public void placeLeavesRow(LevelSimulatedReader reader, BiConsumer<BlockPos, BlockState> posAndStateBiConsumer, Random random, TreeConfiguration tree, BlockPos logBlockPos, int limit, int p_161444_, boolean isDoubleTrunk) {
+        int trunkOffset = isDoubleTrunk ? 1 : 0;
         BlockPos.MutableBlockPos newLeafBlockPosition = new BlockPos.MutableBlockPos();
 
-        for(int j = -p_161443_; j <= p_161443_ + i; ++j) {
-            for(int k = -p_161443_; k <= p_161443_ + i; ++k) {
-                if (!this.shouldSkipLocationSigned(random, j, p_161444_, k, p_161443_, isDoubleTrunk)) {
+        for(int j = -limit; j <= limit + trunkOffset; ++j) {
+            for(int k = -limit; k <= limit + trunkOffset; ++k) {
+                if (!this.shouldSkipLocationSigned(random, j, p_161444_, k, limit, isDoubleTrunk)) {
                     newLeafBlockPosition.setWithOffset(logBlockPos, j, p_161444_, k);
                     tryPlaceLeaf(reader, posAndStateBiConsumer, random, tree, newLeafBlockPosition);
                 }
