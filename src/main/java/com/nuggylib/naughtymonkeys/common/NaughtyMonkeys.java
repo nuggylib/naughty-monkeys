@@ -1,13 +1,13 @@
 package com.nuggylib.naughtymonkeys.common;
 
-import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
-import com.nuggylib.naughtymonkeys.common.registries.effect.NaughtyMonkeysEffects;
-import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
-import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registries.*;
+import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,7 +22,6 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(NaughtyMonkeys.ID)
@@ -52,6 +51,7 @@ public class NaughtyMonkeys
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
+        NaughtyMonkeysFoliagePlacers.FOLIAGE_PLACERS.register(modbus);
     }
 
     /**
@@ -70,22 +70,16 @@ public class NaughtyMonkeys
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
-        // some example code to dispatch IMC to another mod
-        // InterModComms.sendTo("naughty-monkeys", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+
     }
 
     private void processIMC(final InterModProcessEvent event)
     {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.messageSupplier().get()).
-                collect(Collectors.toList()));
+
     }
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 
     public static ResourceLocation prefix(String name) {

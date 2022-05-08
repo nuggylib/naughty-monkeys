@@ -1,6 +1,9 @@
 {
+  "block.naughtymonkeys.banana_sapling": "Banana Sapling",
+  "block.naughtymonkeys.banana_stem": "Banana Stem",
   "block.naughtymonkeys.block_of_monkey_poo": "Block of Monkey Poo",
   "block.naughtymonkeys.block_of_banana": "Block of Banana",
+  "effect.naughtymonkeys.poo_flu": "Poo Flu",
   "item.naughtymonkeys.banana": "Banana",
   "item.naughtymonkeys.monkey_poo": "Monkey Poo",
   "item.naughtymonkeys.monkey_spawn_egg": "Monkey Spawn Egg",

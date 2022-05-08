@@ -1,17 +1,14 @@
 package com.nuggylib.naughtymonkeys.common.entity.projectile;
 
-import com.nuggylib.naughtymonkeys.common.effect.NaughtyMonkeysMobEffect;
-import com.nuggylib.naughtymonkeys.common.registries.effect.NaughtyMonkeysEffects;
-import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
-import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEffects;
+import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEntities;
+import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;

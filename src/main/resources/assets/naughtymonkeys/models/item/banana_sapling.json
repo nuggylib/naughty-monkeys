@@ -1,0 +1,6 @@
+{
+  "parent": "naughtymonkeys:item/generated",
+  "textures": {
+    "layer0": "naughtymonkeys:block/banana_sapling"
+  }
+}

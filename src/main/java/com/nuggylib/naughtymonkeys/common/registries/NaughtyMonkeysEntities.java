@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.registries.entity;
+package com.nuggylib.naughtymonkeys.common.registries;
 
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelBabyMonkey;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;
@@ -9,7 +9,6 @@ import com.nuggylib.naughtymonkeys.common.config.Config;
 import com.nuggylib.naughtymonkeys.common.entity.BabyMonkey;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.entity.projectile.ThrownMonkeyPoo;
-import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;

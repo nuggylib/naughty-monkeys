@@ -1,0 +1,7 @@
+{
+  "parent": "naughtymonkeys:block/cube_column_horizontal",
+  "textures": {
+    "end": "naughtymonkeys:block/banana_stem",
+    "side": "naughtymonkeys:block/banana_stem_bark"
+  }
+}
