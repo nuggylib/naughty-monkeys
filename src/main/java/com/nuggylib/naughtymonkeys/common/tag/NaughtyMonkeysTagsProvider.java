@@ -1,6 +1,5 @@
 package com.nuggylib.naughtymonkeys.common.tag;
 
-import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -16,13 +15,8 @@ public class NaughtyMonkeysTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        try {
-            this.tag(BlockTags.LEAVES).add(NaughtyMonkeysBlocks.BANANA_LEAVES.get());
-            this.tag(BlockTags.LOGS).add(NaughtyMonkeysBlocks.BANANA_STEM.get());
-        } catch (Error error) {
-            NaughtyMonkeys.LOGGER.error(error.getMessage());
-        }
-
+        this.tag(BlockTags.LEAVES).add(NaughtyMonkeysBlocks.BANANA_LEAVES.get());
+        this.tag(BlockTags.LOGS).add(NaughtyMonkeysBlocks.BANANA_STEM.get());
     }
 
 }

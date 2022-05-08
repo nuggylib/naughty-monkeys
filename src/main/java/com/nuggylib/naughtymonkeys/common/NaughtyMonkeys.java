@@ -4,6 +4,7 @@ import com.nuggylib.naughtymonkeys.common.registries.blocks.NaughtyMonkeysBlocks
 import com.nuggylib.naughtymonkeys.common.registries.effect.NaughtyMonkeysEffects;
 import com.nuggylib.naughtymonkeys.common.registries.entity.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registries.items.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registries.type.NaughtyMonkeysFoliagePlacers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -50,6 +51,7 @@ public class NaughtyMonkeys
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
+        NaughtyMonkeysFoliagePlacers.FOLIAGE_PLACERS.register(modbus);
 
     }
 
