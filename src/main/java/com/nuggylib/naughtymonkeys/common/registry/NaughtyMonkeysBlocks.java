@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.registries;
+package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.block.BlockOfBanana;

@@ -1,6 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.tag;
 
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysBlocks;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;

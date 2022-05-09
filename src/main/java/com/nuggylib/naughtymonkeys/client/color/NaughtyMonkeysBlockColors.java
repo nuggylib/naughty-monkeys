@@ -1,8 +1,8 @@
 package com.nuggylib.naughtymonkeys.client.color;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysBlocks;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysBlocks;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.renderer.BiomeColors;

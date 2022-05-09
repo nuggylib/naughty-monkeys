@@ -1,9 +1,8 @@
-package com.nuggylib.naughtymonkeys.common.registries;
+package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.item.ItemBanana;
 import com.nuggylib.naughtymonkeys.common.item.ItemMonkeyPoo;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;

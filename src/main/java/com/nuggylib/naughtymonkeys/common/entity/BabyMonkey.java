@@ -1,6 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.entity;
 
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AgeableMob;
