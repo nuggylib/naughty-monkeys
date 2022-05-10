@@ -1,0 +1,30 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "block/bananas_stage1",
+		"bananas": "block/bananas_stage1"
+	},
+	"elements": [
+		{
+			"from": [5, 5, 9],
+			"to": [11, 12, 15],
+			"faces": {
+				"north": {"uv": [9, 4, 15, 11], "texture": "#bananas"},
+				"east": {"uv": [9, 4, 15, 11], "texture": "#bananas"},
+				"south": {"uv": [9, 4, 15, 11], "texture": "#bananas"},
+				"west": {"uv": [9, 4, 15, 11], "texture": "#bananas"},
+				"up": {"uv": [0, 0, 6, 6], "texture": "#bananas"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#bananas"}
+			}
+		},
+		{
+			"from": [8, 12, 12],
+			"to": [8, 16, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 12, 4], "texture": "#bananas"},
+				"west": {"uv": [12, 0, 16, 4], "texture": "#bananas"}
+			}
+		}
+	]
+}
