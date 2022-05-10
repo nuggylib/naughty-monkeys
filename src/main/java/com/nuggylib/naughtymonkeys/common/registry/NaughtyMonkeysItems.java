@@ -26,8 +26,6 @@ public class NaughtyMonkeysItems {
     public static final RegistryObject<BlockItem> BANANA_STEM_ITEM = ITEMS.register("banana_stem", () -> new BlockItem(NaughtyMonkeysBlocks.BANANA_STEM.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     public static final RegistryObject<BlockItem> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(NaughtyMonkeysBlocks.BANANA_LEAVES.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     public static final RegistryObject<BlockItem> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(NaughtyMonkeysBlocks.BANANA_SAPLING.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
-    public static final RegistryObject<BlockItem> BANANAS = ITEMS.register("bananas", () -> new BlockItem(NaughtyMonkeysBlocks.BANANAS.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
-
     // Items
     public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new ItemBanana(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     public static final RegistryObject<Item> MONKEY_POO = ITEMS.register("monkey_poo", () -> new ItemMonkeyPoo(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
