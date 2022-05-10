@@ -13,7 +13,9 @@ public class NaughtyMonkeysRenderTypesRegistry {
     @SubscribeEvent
     public static void onRenderTypeSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(NaughtyMonkeysBlocks.BANANA_SAPLING.get(), RenderType.cutout());
+            RenderType cutout = RenderType.cutout();
+            ItemBlockRenderTypes.setRenderLayer(NaughtyMonkeysBlocks.BANANA_SAPLING.get(), cutout);
+            ItemBlockRenderTypes.setRenderLayer(NaughtyMonkeysBlocks.BANANAS.get(), cutout);
         });
     }
 

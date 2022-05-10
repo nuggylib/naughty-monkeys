@@ -17,7 +17,7 @@ import java.util.Random;
  * Inspired by the Minecraft {@link net.minecraft.world.level.block.CocoaBlock} class
  */
 public class BlockBanana extends HorizontalDirectionalBlock implements BonemealableBlock {
-    protected BlockBanana(Properties properties) {
+    public BlockBanana(Properties properties) {
         super(properties);
     }
 
