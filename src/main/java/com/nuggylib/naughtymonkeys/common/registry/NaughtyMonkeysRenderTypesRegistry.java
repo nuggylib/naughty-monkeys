@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.registries;
+package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -13,7 +13,9 @@ public class NaughtyMonkeysRenderTypesRegistry {
     @SubscribeEvent
     public static void onRenderTypeSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(NaughtyMonkeysBlocks.BANANA_SAPLING.get(), RenderType.cutout());
+            RenderType cutout = RenderType.cutout();
+            ItemBlockRenderTypes.setRenderLayer(NaughtyMonkeysBlocks.BANANA_SAPLING.get(), cutout);
+            ItemBlockRenderTypes.setRenderLayer(NaughtyMonkeysBlocks.BANANAS.get(), cutout);
         });
     }
 

@@ -1,6 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.tag;
 
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysBlocks;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
@@ -17,6 +17,7 @@ public class NaughtyMonkeysTagsProvider extends BlockTagsProvider {
     protected void addTags() {
         this.tag(BlockTags.LEAVES).add(NaughtyMonkeysBlocks.BANANA_LEAVES.get());
         this.tag(BlockTags.LOGS).add(NaughtyMonkeysBlocks.BANANA_STEM.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(NaughtyMonkeysBlocks.BANANAS.get());
     }
 
 }

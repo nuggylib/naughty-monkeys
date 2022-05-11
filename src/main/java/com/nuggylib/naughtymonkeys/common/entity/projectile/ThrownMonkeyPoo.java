@@ -1,8 +1,8 @@
 package com.nuggylib.naughtymonkeys.common.entity.projectile;
 
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEffects;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysEntities;
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEffects;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;

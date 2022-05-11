@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.registries;
+package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelBabyMonkey;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;

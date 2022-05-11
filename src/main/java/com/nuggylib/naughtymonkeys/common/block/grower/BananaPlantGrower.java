@@ -1,6 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.block.grower;
 
-import com.nuggylib.naughtymonkeys.common.registries.NaughtyMonkeysFeatures;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysFeatures;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
