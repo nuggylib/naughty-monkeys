@@ -48,6 +48,7 @@ public class NaughtyMonkeys
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
         NaughtyMonkeysFoliagePlacers.FOLIAGE_PLACERS.register(modbus);
+        NaughtyMonkeysTreeDecorators.TREE_DECORATOR_TYPES.register(modbus);
     }
 
     /**

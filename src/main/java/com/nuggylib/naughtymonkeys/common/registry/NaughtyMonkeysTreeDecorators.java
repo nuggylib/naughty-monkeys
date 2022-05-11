@@ -18,8 +18,8 @@ import net.minecraftforge.registries.RegistryObject;
  */
 public class NaughtyMonkeysTreeDecorators<P extends TreeDecorator> extends net.minecraftforge.registries.ForgeRegistryEntry<TreeDecoratorType<?>> {
 
-    public static final DeferredRegister<TreeDecoratorType<?>> FOLIAGE_PLACERS = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, NaughtyMonkeys.ID);
+    public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATOR_TYPES = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, NaughtyMonkeys.ID);
 
-    public static final RegistryObject<TreeDecoratorType<BananasDecorator>> BANANAS = FOLIAGE_PLACERS.register("bananas", () -> new TreeDecoratorType<>(BananasDecorator.CODEC));
+    public static final RegistryObject<TreeDecoratorType<BananasDecorator>> BANANAS = TREE_DECORATOR_TYPES.register("bananas", () -> new TreeDecoratorType<>(BananasDecorator.CODEC));
 
 }
