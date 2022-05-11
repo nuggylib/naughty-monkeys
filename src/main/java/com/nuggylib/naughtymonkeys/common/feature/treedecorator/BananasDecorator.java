@@ -7,8 +7,6 @@ import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysTreeDecorators;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CocoaBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
@@ -44,7 +42,8 @@ public class BananasDecorator extends TreeDecorator {
                 for(Direction face : Direction.Plane.HORIZONTAL) {
                     if (random.nextFloat() <= 0.25F) {
                         Direction faceOpposite = face.getOpposite();
-                        BlockPos blockpos = targetBlockPos.offset(faceOpposite.getStepX(), 0, faceOpposite.getStepZ());
+                        int lastLogBlockIndex = targetBlockPositions.size() - 1;
+                        BlockPos blockpos = targetBlockPos.offset(faceOpposite.getStepX(), (lastLogBlockIndex - 1), faceOpposite.getStepZ());
                         if (Feature.isAir(levelReader, blockpos)) {
                             blockPosBlockStateBiConsumer.accept(blockpos, NaughtyMonkeysBlocks.BANANAS.get().defaultBlockState().setValue(BlockBanana.AGE, Integer.valueOf(random.nextInt(3))).setValue(BlockBanana.FACING, face));
                         }
