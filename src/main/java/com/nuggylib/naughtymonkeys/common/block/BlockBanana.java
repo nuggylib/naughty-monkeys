@@ -28,43 +28,30 @@ import java.util.Random;
  * Inspired by the Minecraft {@link net.minecraft.world.level.block.CocoaBlock} class
  */
 public class BlockBanana extends HorizontalDirectionalBlock implements BonemealableBlock {
-    public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
-    protected static final int AGE_0_WIDTH = 4;
-    protected static final int AGE_0_HEIGHT = 5;
-    protected static final int AGE_0_HALFWIDTH = 2;
-    protected static final int AGE_1_WIDTH = 6;
-    protected static final int AGE_1_HEIGHT = 7;
-    protected static final int AGE_1_HALFWIDTH = 3;
-    protected static final int AGE_2_WIDTH = 8;
-    protected static final int AGE_2_HEIGHT = 9;
-    protected static final int AGE_2_HALFWIDTH = 4;
-    protected static final int AGE_3_WIDTH = 10;
-    protected static final int AGE_3_HEIGHT = 11;
-    protected static final int AGE_3_HALFWIDTH = 5;
     protected static final VoxelShape[] EAST_AABB = new VoxelShape[]{
             Block.box(11.0D, 7.0D, 6.0D, 15.0D, 12.0D, 10.0D),
             Block.box(9.0D, 5.0D, 5.0D, 15.0D, 12.0D, 11.0D),
             Block.box(7.0D, 3.0D, 4.0D, 15.0D, 12.0D, 12.0D),
-            Block.box(5.0D, 1.0D, 3.0D, 15.0D, 12.0D, 13.0D)
+            Block.box(7.0D, 3.0D, 3.0D, 15.0D, 12.0D, 13.0D)
     };
     protected static final VoxelShape[] WEST_AABB = new VoxelShape[]{
             Block.box(1.0D, 7.0D, 6.0D, 5.0D, 12.0D, 10.0D),
             Block.box(1.0D, 5.0D, 5.0D, 7.0D, 12.0D, 11.0D),
             Block.box(1.0D, 3.0D, 4.0D, 9.0D, 12.0D, 12.0D),
-            Block.box(1.0D, 1.0D, 3.0D, 11.0D, 12.0D, 13.0D)
+            Block.box(1.0D, 3.0D, 3.0D, 9.0D, 12.0D, 13.0D)
     };
     protected static final VoxelShape[] NORTH_AABB = new VoxelShape[]{
             Block.box(6.0D, 7.0D, 1.0D, 10.0D, 12.0D, 5.0D),
             Block.box(5.0D, 5.0D, 1.0D, 11.0D, 12.0D, 7.0D),
             Block.box(4.0D, 3.0D, 1.0D, 12.0D, 12.0D, 9.0D),
-            Block.box(3.0D, 1.0D, 1.0D, 13.0D, 12.0D, 11.0D)
+            Block.box(3.0D, 3.0D, 1.0D, 13.0D, 12.0D, 9.0D)
     };
     protected static final VoxelShape[] SOUTH_AABB = new VoxelShape[]{
             Block.box(6.0D, 7.0D, 11.0D, 10.0D, 12.0D, 15.0D),
             Block.box(5.0D, 5.0D, 9.0D, 11.0D, 12.0D, 15.0D),
             Block.box(4.0D, 3.0D, 7.0D, 12.0D, 12.0D, 15.0D),
-            Block.box(3.0D, 1.0D, 5.0D, 13.0D, 12.0D, 15.0D)
+            Block.box(3.0D, 3.0D, 7.0D, 13.0D, 12.0D, 15.0D)
     };
 
     public BlockBanana(Properties properties) {
