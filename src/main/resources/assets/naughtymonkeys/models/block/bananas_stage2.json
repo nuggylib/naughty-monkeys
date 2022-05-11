@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "block/bananas_stage2",
-		"bananas": "block/bananas_stage2"
+		"particle": "naughtymonkeys:block/bananas_stage2",
+		"bananas": "naughtymonkeys:block/bananas_stage2"
 	},
 	"elements": [
 		{

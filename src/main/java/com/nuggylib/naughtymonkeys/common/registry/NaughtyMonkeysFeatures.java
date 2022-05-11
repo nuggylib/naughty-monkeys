@@ -1,7 +1,9 @@
 package com.nuggylib.naughtymonkeys.common.registry;
 
+import com.google.common.collect.ImmutableList;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.feature.BananaPlantFoliagePlacer;
+import com.nuggylib.naughtymonkeys.common.feature.treedecorator.BananasDecorator;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -12,6 +14,9 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.CocoaDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +28,7 @@ public class NaughtyMonkeysFeatures {
     public static ConfiguredFeature<TreeConfiguration, ?> BANANA_PLANT;
 
     public static void init() {
-        BANANA_PLANT = register("banana_plant", Feature.TREE.configured(createBananaPlant().build()));
+        BANANA_PLANT = register("banana_plant", Feature.TREE.configured(createBananaPlant().decorators(ImmutableList.of(new BananasDecorator(1.0F))).ignoreVines().build()));
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block logBlock, Block leavesBlock, int baseHeight, int heightRandA, int heightRandB, int p_195152_) {
