@@ -33,25 +33,25 @@ public class BlockBanana extends HorizontalDirectionalBlock implements Bonemeala
             Block.box(11.0D, 7.0D, 6.0D, 15.0D, 12.0D, 10.0D),
             Block.box(9.0D, 5.0D, 5.0D, 15.0D, 12.0D, 11.0D),
             Block.box(7.0D, 3.0D, 4.0D, 15.0D, 12.0D, 12.0D),
-            Block.box(7.0D, 3.0D, 3.0D, 15.0D, 12.0D, 13.0D)
+            Block.box(7.0D, 3.0D, 4.0D, 15.0D, 12.0D, 12.0D)
     };
     protected static final VoxelShape[] WEST_AABB = new VoxelShape[]{
             Block.box(1.0D, 7.0D, 6.0D, 5.0D, 12.0D, 10.0D),
             Block.box(1.0D, 5.0D, 5.0D, 7.0D, 12.0D, 11.0D),
             Block.box(1.0D, 3.0D, 4.0D, 9.0D, 12.0D, 12.0D),
-            Block.box(1.0D, 3.0D, 3.0D, 9.0D, 12.0D, 13.0D)
+            Block.box(1.0D, 3.0D, 4.0D, 9.0D, 12.0D, 12.0D)
     };
     protected static final VoxelShape[] NORTH_AABB = new VoxelShape[]{
             Block.box(6.0D, 7.0D, 1.0D, 10.0D, 12.0D, 5.0D),
             Block.box(5.0D, 5.0D, 1.0D, 11.0D, 12.0D, 7.0D),
             Block.box(4.0D, 3.0D, 1.0D, 12.0D, 12.0D, 9.0D),
-            Block.box(3.0D, 3.0D, 1.0D, 13.0D, 12.0D, 9.0D)
+            Block.box(4.0D, 3.0D, 1.0D, 12.0D, 12.0D, 9.0D)
     };
     protected static final VoxelShape[] SOUTH_AABB = new VoxelShape[]{
             Block.box(6.0D, 7.0D, 11.0D, 10.0D, 12.0D, 15.0D),
             Block.box(5.0D, 5.0D, 9.0D, 11.0D, 12.0D, 15.0D),
             Block.box(4.0D, 3.0D, 7.0D, 12.0D, 12.0D, 15.0D),
-            Block.box(3.0D, 3.0D, 7.0D, 13.0D, 12.0D, 15.0D)
+            Block.box(4.0D, 3.0D, 7.0D, 12.0D, 12.0D, 15.0D)
     };
 
     public BlockBanana(Properties properties) {
