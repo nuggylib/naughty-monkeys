@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.block;
 
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysBlocks;
 import com.nuggylib.naughtymonkeys.common.registry.tag.NaughtyMonkeysBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -106,7 +107,7 @@ public class BlockBanana extends HorizontalDirectionalBlock implements Bonemeala
     @Override
     public boolean canSurvive(BlockState bananasBlockPos, LevelReader levelReader, BlockPos targetBlockPos) {
         BlockState blockstate = levelReader.getBlockState(targetBlockPos.relative(bananasBlockPos.getValue(FACING)));
-        return blockstate.is(NaughtyMonkeysBlockTags.BANANA_STEM);
+        return blockstate.is(NaughtyMonkeysBlocks.BANANA_STEM.get());
     }
 
     @Override
