@@ -2,9 +2,11 @@ package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.item.ItemBanana;
+import com.nuggylib.naughtymonkeys.common.item.ItemBananaBunch;
 import com.nuggylib.naughtymonkeys.common.item.ItemMonkeyPoo;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -29,7 +31,8 @@ public class NaughtyMonkeysItems {
     // Items
     public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new ItemBanana(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     public static final RegistryObject<Item> MONKEY_POO = ITEMS.register("monkey_poo", () -> new ItemMonkeyPoo(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
-
+    // TODO: We may want to make this just a regular item - for now this is how you "plant" new bunches, which is weird
+    public static final RegistryObject<Item> BANANA_BUNCH = ITEMS.register("banana_bunch", () -> new ItemNameBlockItem(NaughtyMonkeysBlocks.BANANAS.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
 
     public static Item.Properties defaultBuilder() {
         return new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS);
