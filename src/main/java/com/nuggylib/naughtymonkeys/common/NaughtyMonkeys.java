@@ -1,10 +1,23 @@
 package com.nuggylib.naughtymonkeys.common;
 
 import com.nuggylib.naughtymonkeys.common.registry.*;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
+import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
