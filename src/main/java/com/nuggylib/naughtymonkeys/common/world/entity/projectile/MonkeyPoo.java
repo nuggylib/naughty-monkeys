@@ -3,6 +3,7 @@ package com.nuggylib.naughtymonkeys.common.world.entity.projectile;
 import com.google.common.collect.Sets;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEffects;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -31,10 +32,7 @@ import java.util.Set;
  * @see {@link Arrow}
  */
 public class MonkeyPoo extends AbstractMonkeyPoo {
-    private static final int EXPOSED_POTION_DECAY_TIME = 600;
-    private static final int NO_EFFECT_COLOR = -1;
     private static final EntityDataAccessor<Integer> ID_EFFECT_COLOR = SynchedEntityData.defineId(Arrow.class, EntityDataSerializers.INT);
-    private static final byte EVENT_POTION_PUFF = 0;
     private Potion potion = Potions.EMPTY;
     private final Set<MobEffectInstance> effects = Sets.newHashSet();
     private boolean fixedColor;
@@ -43,35 +41,11 @@ public class MonkeyPoo extends AbstractMonkeyPoo {
         super(p_36858_, p_36859_);
     }
 
-    public MonkeyPoo(Level p_36861_, double p_36862_, double p_36863_, double p_36864_) {
-        super(NaughtyMonkeysEntities.THROWN_MONKEY_POO.get(), p_36862_, p_36863_, p_36864_, p_36861_);
-    }
-
     public MonkeyPoo(Level p_36866_, LivingEntity p_36867_) {
         super(NaughtyMonkeysEntities.THROWN_MONKEY_POO.get(), p_36867_, p_36866_);
     }
 
     public void setEffectsFromItem(ItemStack p_36879_) {
-        if (p_36879_.is(Items.TIPPED_ARROW)) {
-            this.potion = PotionUtils.getPotion(p_36879_);
-            Collection<MobEffectInstance> collection = PotionUtils.getCustomEffects(p_36879_);
-            if (!collection.isEmpty()) {
-                for(MobEffectInstance mobeffectinstance : collection) {
-                    this.effects.add(new MobEffectInstance(mobeffectinstance));
-                }
-            }
-
-            int i = getCustomColor(p_36879_);
-            if (i == -1) {
-                this.updateColor();
-            } else {
-                this.setFixedColor(i);
-            }
-        } else if (p_36879_.is(Items.ARROW)) {
-            this.potion = Potions.EMPTY;
-            this.effects.clear();
-            this.entityData.set(ID_EFFECT_COLOR, -1);
-        }
 
     }
 
@@ -199,18 +173,7 @@ public class MonkeyPoo extends AbstractMonkeyPoo {
     }
 
     protected ItemStack getPickupItem() {
-        if (this.effects.isEmpty() && this.potion == Potions.EMPTY) {
-            return new ItemStack(Items.ARROW);
-        } else {
-            ItemStack itemstack = new ItemStack(Items.TIPPED_ARROW);
-            PotionUtils.setPotion(itemstack, this.potion);
-            PotionUtils.setCustomEffects(itemstack, this.effects);
-            if (this.fixedColor) {
-                itemstack.getOrCreateTag().putInt("CustomPotionColor", this.getColor());
-            }
-
-            return itemstack;
-        }
+        return new ItemStack(NaughtyMonkeysItems.MONKEY_POO.get());
     }
 
     public void handleEntityEvent(byte p_36869_) {
@@ -230,5 +193,4 @@ public class MonkeyPoo extends AbstractMonkeyPoo {
         }
 
     }
-    
 }
