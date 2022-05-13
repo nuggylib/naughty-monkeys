@@ -12,9 +12,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class NaughtyMonkeysSounds {
-
-    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, NaughtyMonkeys.ID);
-
     public static SoundEvent MONKEY_POO;
 
     @SubscribeEvent

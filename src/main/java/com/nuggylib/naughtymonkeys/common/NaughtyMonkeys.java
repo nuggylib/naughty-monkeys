@@ -55,7 +55,6 @@ public class NaughtyMonkeys
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        NaughtyMonkeysSounds.SOUNDS.register(modbus);
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
         NaughtyMonkeysItems.ITEMS.register(modbus);
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
