@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.world.entity.projectile;
 
 import com.google.common.collect.Lists;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysSounds;
 import com.nuggylib.naughtymonkeys.common.world.damagesource.NaughtyMonkeysDamageSource;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -400,7 +401,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
     }
 
     protected SoundEvent getDefaultHitGroundSoundEvent() {
-        return SoundEvents.ARROW_HIT;
+        return NaughtyMonkeysSounds.MONKEY_POO.get();
     }
 
     protected final SoundEvent getHitGroundSoundEvent() {
