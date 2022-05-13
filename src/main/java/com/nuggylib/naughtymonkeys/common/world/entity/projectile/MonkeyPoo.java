@@ -156,17 +156,17 @@ public class MonkeyPoo extends AbstractMonkeyPoo {
 
     }
 
-    protected void doPostHurtEffects(LivingEntity p_36873_) {
-        super.doPostHurtEffects(p_36873_);
+    protected void doPostHurtEffects(LivingEntity hitEntity) {
+        super.doPostHurtEffects(hitEntity);
         Entity entity = this.getEffectSource();
 
         for(MobEffectInstance mobeffectinstance : this.potion.getEffects()) {
-            p_36873_.addEffect(new MobEffectInstance(mobeffectinstance.getEffect(), Math.max(mobeffectinstance.getDuration() / 8, 1), mobeffectinstance.getAmplifier(), mobeffectinstance.isAmbient(), mobeffectinstance.isVisible()), entity);
+            hitEntity.addEffect(new MobEffectInstance(mobeffectinstance.getEffect(), Math.max(mobeffectinstance.getDuration() / 8, 1), mobeffectinstance.getAmplifier(), mobeffectinstance.isAmbient(), mobeffectinstance.isVisible()), entity);
         }
 
         if (!this.effects.isEmpty()) {
             for(MobEffectInstance mobeffectinstance1 : this.effects) {
-                p_36873_.addEffect(mobeffectinstance1, entity);
+                hitEntity.addEffect(mobeffectinstance1, entity);
             }
         }
 
