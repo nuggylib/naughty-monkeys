@@ -55,6 +55,7 @@ public class NaughtyMonkeys
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        NaughtyMonkeysSounds.SOUNDS.register(modbus);
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
         NaughtyMonkeysItems.ITEMS.register(modbus);
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
@@ -62,7 +63,6 @@ public class NaughtyMonkeys
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
         NaughtyMonkeysFoliagePlacers.FOLIAGE_PLACERS.register(modbus);
         NaughtyMonkeysTreeDecorators.TREE_DECORATOR_TYPES.register(modbus);
-        NaughtyMonkeysSounds.SOUNDS.register(modbus);
     }
 
     /**

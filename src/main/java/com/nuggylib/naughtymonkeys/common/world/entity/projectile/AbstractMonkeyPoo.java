@@ -401,7 +401,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
     }
 
     protected SoundEvent getDefaultHitGroundSoundEvent() {
-        return NaughtyMonkeysSounds.MONKEY_POO.get();
+        return NaughtyMonkeysSounds.MONKEY_POO;
     }
 
     protected final SoundEvent getHitGroundSoundEvent() {
