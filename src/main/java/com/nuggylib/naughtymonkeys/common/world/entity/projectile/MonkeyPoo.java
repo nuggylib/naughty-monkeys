@@ -48,12 +48,7 @@ public class MonkeyPoo extends AbstractMonkeyPoo {
     public void setEffectsFromItem(ItemStack p_36879_) {
 
     }
-
-    public static int getCustomColor(ItemStack p_36885_) {
-        CompoundTag compoundtag = p_36885_.getTag();
-        return compoundtag != null && compoundtag.contains("CustomPotionColor", 99) ? compoundtag.getInt("CustomPotionColor") : -1;
-    }
-
+    
     private void updateColor() {
         this.fixedColor = false;
         if (this.potion == Potions.EMPTY && this.effects.isEmpty()) {
