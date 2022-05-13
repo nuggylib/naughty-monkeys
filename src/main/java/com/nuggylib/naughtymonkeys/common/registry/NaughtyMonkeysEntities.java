@@ -3,12 +3,13 @@ package com.nuggylib.naughtymonkeys.common.registry;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelBabyMonkey;
 import com.nuggylib.naughtymonkeys.client.model.entity.ModelMonkey;
 import com.nuggylib.naughtymonkeys.client.renderer.entity.BabyMonkeyRenderer;
+import com.nuggylib.naughtymonkeys.client.renderer.entity.MonkeyPooRenderer;
 import com.nuggylib.naughtymonkeys.client.renderer.entity.MonkeyRenderer;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.config.Config;
 import com.nuggylib.naughtymonkeys.common.entity.BabyMonkey;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
-import com.nuggylib.naughtymonkeys.common.entity.projectile.ThrownMonkeyPoo;
+import com.nuggylib.naughtymonkeys.common.world.entity.projectile.MonkeyPoo;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
@@ -49,7 +50,7 @@ public class NaughtyMonkeysEntities {
 
     public static final RegistryObject<EntityType<Monkey>> MONKEY = make(NaughtyMonkeys.prefix("monkey"), Monkey::new, MobCategory.CREATURE, 1.0F, 1.0F, 0x7b4d2e, 0x4b241d, false);
     public static final RegistryObject<EntityType<BabyMonkey>> BABY_MONKEY = make(NaughtyMonkeys.prefix("baby_monkey"), BabyMonkey::new, MobCategory.CREATURE, 1.0F, 1.0F, 0x7b4d2e, 0x4b241d, false);
-    public static final RegistryObject<EntityType<ThrownMonkeyPoo>> THROWN_MONKEY_POO = make(NaughtyMonkeys.prefix("monkey_poo"), ThrownMonkeyPoo::new, MobCategory.MISC, 1.0F, 1.0F , 0, 0, true);
+    public static final RegistryObject<EntityType<MonkeyPoo>> THROWN_MONKEY_POO = make(NaughtyMonkeys.prefix("monkey_poo"), MonkeyPoo::new, MobCategory.MISC, 1.0F, 1.0F , 0, 0, true);
 
     /**
      * Make RegistryObject for given mob entity type
@@ -131,7 +132,7 @@ public class NaughtyMonkeysEntities {
     public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(MONKEY.get(), m -> new MonkeyRenderer<>(m, new ModelMonkey<>(m.bakeLayer(ModelMonkey.LAYER_LOCATION)), 0.4F, "monkey.png"));
         event.registerEntityRenderer(BABY_MONKEY.get(), m -> new BabyMonkeyRenderer<>(m, new ModelBabyMonkey<>(m.bakeLayer(ModelBabyMonkey.LAYER_LOCATION)), 0.4F, "baby_monkey.png"));
-        event.registerEntityRenderer(THROWN_MONKEY_POO.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(THROWN_MONKEY_POO.get(), MonkeyPooRenderer::new);
     }
 
     @Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID)

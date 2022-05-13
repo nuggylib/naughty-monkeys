@@ -1,27 +1,39 @@
 package com.nuggylib.naughtymonkeys.common.item;
 
-import com.nuggylib.naughtymonkeys.common.entity.projectile.ThrownMonkeyPoo;
+import com.nuggylib.naughtymonkeys.common.world.entity.projectile.AbstractMonkeyPoo;
+import com.nuggylib.naughtymonkeys.common.world.entity.projectile.MonkeyPoo;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+/**
+ * {@link net.minecraft.world.item.ArrowItem}
+ */
 public class ItemMonkeyPoo extends Item {
     public ItemMonkeyPoo(Properties p_41383_) {
         super(p_41383_);
     }
 
+    /**
+     * Controls how the monkey poo is "used" when right-clicking with it
+     *
+     * @param level
+     * @param player
+     * @param playerHand
+     * @return
+     */
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand playerHand) {
         ItemStack itemstack = player.getItemInHand(playerHand);
         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide) {
-            ThrownMonkeyPoo monkeyPoo = new ThrownMonkeyPoo(level, player);
-            monkeyPoo.setItem(itemstack);
+            MonkeyPoo monkeyPoo = new MonkeyPoo(level, player);
             monkeyPoo.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
             level.addFreshEntity(monkeyPoo);
         }
@@ -32,5 +44,11 @@ public class ItemMonkeyPoo extends Item {
         }
 
         return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
+    }
+
+    public AbstractMonkeyPoo createMonkeyPoo(Level p_40513_, ItemStack p_40514_, LivingEntity p_40515_) {
+        MonkeyPoo monkeyPoo = new MonkeyPoo(p_40513_, p_40515_);
+        monkeyPoo.setEffectsFromItem(p_40514_);
+        return monkeyPoo;
     }
 }
