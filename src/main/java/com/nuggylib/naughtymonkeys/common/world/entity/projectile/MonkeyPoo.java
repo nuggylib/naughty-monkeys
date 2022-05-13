@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.world.entity.projectile;
 
 import com.google.common.collect.Sets;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEffects;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
@@ -9,6 +10,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 
 import java.util.Collection;
 import java.util.Set;
@@ -227,5 +230,5 @@ public class MonkeyPoo extends AbstractMonkeyPoo {
         }
 
     }
-
+    
 }
