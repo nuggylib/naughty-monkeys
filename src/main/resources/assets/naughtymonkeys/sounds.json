@@ -1,0 +1,9 @@
+{
+  "entity.monkey_poo.hit": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_poo"
+      }
+    ]
+  }
+}
