@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.entity;
 
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.RangedMonkeyPooAttackGoal;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.AbstractMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.NaughtyMonkeysProjectileUtil;
 import net.minecraft.server.level.ServerLevel;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -24,7 +26,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * @see {@link RangedAttackMob}
+ * {@link net.minecraft.world.entity.monster.Skeleton}
  */
 public class Monkey extends Animal implements RangedAttackMob {
     private int eatAnimationTick;
@@ -34,6 +36,10 @@ public class Monkey extends Animal implements RangedAttackMob {
 
     @Override
     protected void registerGoals() {
+
+        RangedMonkeyPooAttackGoal<Monkey> monkeyPooRangedAttackGoal = new RangedMonkeyPooAttackGoal<>(this, 1.0D, 20, 15.0F);
+        monkeyPooRangedAttackGoal.setMinAttackInterval(3);
+
         goalSelector.addGoal(0, new FloatGoal(this));
 //        goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
         goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
@@ -44,6 +50,7 @@ public class Monkey extends Animal implements RangedAttackMob {
         goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        goalSelector.addGoal(4, monkeyPooRangedAttackGoal);
         targetSelector.addGoal(1, new HurtByTargetGoal(this));
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
@@ -82,7 +89,7 @@ public class Monkey extends Animal implements RangedAttackMob {
         double d2 = monkey.getZ() - this.getZ();
         double d3 = Math.sqrt(d0 * d0 + d2 * d2);
         abstractMonkeyPoo.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F, (float)(14 - this.level.getDifficulty().getId() * 4));
-        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.playSound(SoundEvents.SNOWBALL_THROW, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(abstractMonkeyPoo);
     }
 }
