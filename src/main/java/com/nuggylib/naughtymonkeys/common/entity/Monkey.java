@@ -75,7 +75,7 @@ public class Monkey extends Animal implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity monkey, float p_32142_) {
-        ItemStack itemstack = this.getProjectile(this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof net.minecraft.world.item.BowItem)));
+        ItemStack itemstack = new ItemStack(NaughtyMonkeysItems.MONKEY_POO.get());
         AbstractMonkeyPoo abstractMonkeyPoo = this.getArrow(itemstack, p_32142_);
         double d0 = monkey.getX() - this.getX();
         double d1 = monkey.getY(0.3333333333333333D) - abstractMonkeyPoo.getY();
