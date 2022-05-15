@@ -1,23 +1,17 @@
 package com.nuggylib.naughtymonkeys.common;
 
 import com.nuggylib.naughtymonkeys.common.registry.*;
-import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
-import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,6 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Locale;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -56,12 +51,14 @@ public class NaughtyMonkeys
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
+        NaughtyMonkeysBlocks.VANILLA_BLOCKS.register(modbus);
         NaughtyMonkeysItems.ITEMS.register(modbus);
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
         NaughtyMonkeysFoliagePlacers.FOLIAGE_PLACERS.register(modbus);
         NaughtyMonkeysTreeDecorators.TREE_DECORATOR_TYPES.register(modbus);
+
     }
 
     /**
@@ -98,5 +95,15 @@ public class NaughtyMonkeys
 
     public static ResourceLocation getModelTexture(String name) {
         return new ResourceLocation(ID, MODEL_DIR + name);
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void onBiomeLoadingEvent(BiomeLoadingEvent event) {
+        List<MobSpawnSettings.SpawnerData> spawns = event.getSpawns().getSpawner(MobCategory.CREATURE);
+
+        // Remove "default" spawn logic inherited for Monkeys
+        spawns.removeIf(e -> e.type == NaughtyMonkeysEntities.MONKEY.get());
+        // Make monkeys spawn more
+        spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 10000, 1, 4));
     }
 }
