@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.entity;
 
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.RangedMonkeyPooAttackGoal;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.AbstractMonkeyPoo;
@@ -94,10 +95,15 @@ public class Monkey extends Animal implements RangedAttackMob {
         return NaughtyMonkeysProjectileUtil.getMobThrownPoop(this, p_32156_, p_32157_);
     }
 
+    @Override
+    public boolean isFood(ItemStack itemStack) {
+        return itemStack.is(NaughtyMonkeysItems.BANANA.get());
+    }
+
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob mate) {
-        return null;
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mate) {
+        return NaughtyMonkeysEntities.MONKEY.get().create(level);
     }
 
     @Override
