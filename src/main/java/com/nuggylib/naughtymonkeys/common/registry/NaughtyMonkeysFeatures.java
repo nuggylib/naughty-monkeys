@@ -2,8 +2,8 @@ package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.google.common.collect.ImmutableList;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
-import com.nuggylib.naughtymonkeys.common.feature.BananaPlantFoliagePlacer;
-import com.nuggylib.naughtymonkeys.common.feature.treedecorator.BananasDecorator;
+import com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature.BananaPlantFoliagePlacer;
+import com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature.treedecorator.BananasDecorator;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -14,9 +14,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.treedecorators.CocoaDecorator;
-import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

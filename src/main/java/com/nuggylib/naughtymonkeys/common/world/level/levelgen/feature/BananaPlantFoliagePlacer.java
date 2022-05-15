@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.feature;
+package com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature;
 
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;

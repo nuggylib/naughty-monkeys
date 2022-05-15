@@ -1,4 +1,4 @@
-package com.nuggylib.naughtymonkeys.common.feature.treedecorator;
+package com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature.treedecorator;
 
 import com.mojang.serialization.Codec;
 import com.nuggylib.naughtymonkeys.common.block.BlockBanana;
