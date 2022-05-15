@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.entity;
 
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysTags;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.RangedMonkeyPooAttackGoal;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.AbstractMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.NaughtyMonkeysProjectileUtil;
@@ -120,8 +121,6 @@ public class Monkey extends Animal implements RangedAttackMob {
     }
 
     public static boolean checkSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor levelAccessor, MobSpawnType p_27580_, BlockPos blockPos, Random p_27582_) {
-        // TODO: Add a custom tag
-//        return levelAccessor.getBlockState(blockPos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) &&
-        return isBrightEnoughToSpawn(levelAccessor, blockPos);
+        return levelAccessor.getBlockState(blockPos.below()).is(NaughtyMonkeysTags.MONKEYS_SPAWNABLE_ON) && isBrightEnoughToSpawn(levelAccessor, blockPos);
     }
 }

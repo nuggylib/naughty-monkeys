@@ -1,4 +1,5 @@
 c23058fb5992aca6fcff4bdbb939b7dfaa7ad7bd data/minecraft/tags/blocks/leaves.json
 019f6b7ad504843bb350f11d9c326d3464e7c852 data/minecraft/tags/blocks/logs.json
 c1eab6e3f7880da13d42b480f993ff0612273c52 data/minecraft/tags/blocks/mineable/axe.json
+9badb27deb2966fd6fc8612266bf09eab72623fb data/monkeys_spawnable_on/tags/blocks/naughtymonkeys.json
 96488866c0471b2d4898f1e33ede57a83207ce39 data/naughtymonkeys/loot_tables/blocks/bananas.json
