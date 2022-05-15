@@ -16,10 +16,8 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -34,25 +32,47 @@ public class Monkey extends Animal implements RangedAttackMob {
         super(type, world);
     }
 
+    protected void updateNoActionTime() {
+        float f = this.getBrightness();
+        if (f > 0.5F) {
+            this.noActionTime += 2;
+        }
+
+    }
+
+    @Override
+    public void aiStep() {
+        this.updateSwingTime();
+        this.updateNoActionTime();
+        super.aiStep();
+    }
+
     @Override
     protected void registerGoals() {
 
-        RangedMonkeyPooAttackGoal<Monkey> monkeyPooRangedAttackGoal = new RangedMonkeyPooAttackGoal<>(this, 1.0D, 20, 15.0F);
-        monkeyPooRangedAttackGoal.setMinAttackInterval(3);
+        RangedMonkeyPooAttackGoal<Monkey> monkeyPooRangedAttackGoal = new RangedMonkeyPooAttackGoal<>(this, 1.0D, 50, 15.0F);
 
+        // monkey floats
         goalSelector.addGoal(0, new FloatGoal(this));
-//        goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
+        // monkey breeds
         goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        // TODO: Add a custom goal that serves as a tempt goal gated by whether or not the user is wearing the banana suit
+        // monkey tempted by bananas
         goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
+        // babies follow parent monkeys
         goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-        goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 16.0F, 1.5D, 1.8D));
+        // monkey avoid water
         goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        // monkey looks at players
         goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        // monkey randomly looks around
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        // monkey throws poop
         goalSelector.addGoal(4, monkeyPooRangedAttackGoal);
+        // monkey alerts others when hurt by a target entity
         targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        // monkey targets players
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+
     }
 
     public static AttributeSupplier.Builder registerAttributes() {
@@ -70,7 +90,7 @@ public class Monkey extends Animal implements RangedAttackMob {
         }
     }
 
-    protected AbstractMonkeyPoo getArrow(ItemStack p_32156_, float p_32157_) {
+    protected AbstractMonkeyPoo getMonkeyPoo(ItemStack p_32156_, float p_32157_) {
         return NaughtyMonkeysProjectileUtil.getMobThrownPoop(this, p_32156_, p_32157_);
     }
 
@@ -82,8 +102,9 @@ public class Monkey extends Animal implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity monkey, float p_32142_) {
+        // TODO: Prevent machine gun poo throwing (may also be fixed in the goal, but not sure)
         ItemStack itemstack = new ItemStack(NaughtyMonkeysItems.MONKEY_POO.get());
-        AbstractMonkeyPoo abstractMonkeyPoo = this.getArrow(itemstack, p_32142_);
+        AbstractMonkeyPoo abstractMonkeyPoo = this.getMonkeyPoo(itemstack, p_32142_);
         double d0 = monkey.getX() - this.getX();
         double d1 = monkey.getY(0.3333333333333333D) - abstractMonkeyPoo.getY();
         double d2 = monkey.getZ() - this.getZ();

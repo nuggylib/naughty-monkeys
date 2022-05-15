@@ -53,7 +53,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
     private BlockState lastState;
     protected boolean inGround;
     protected int inGroundTime;
-    public AbstractArrow.Pickup pickup = AbstractArrow.Pickup.DISALLOWED;
+    public AbstractMonkeyPoo.Pickup pickup = AbstractMonkeyPoo.Pickup.DISALLOWED;
     public int shakeTime;
     private int life;
     private double baseDamage = 2.0D;
@@ -77,7 +77,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
         this(p_36717_, p_36718_.getX(), p_36718_.getEyeY() - (double)0.1F, p_36718_.getZ(), p_36719_);
         this.setOwner(p_36718_);
         if (p_36718_ instanceof Player) {
-            this.pickup = AbstractArrow.Pickup.ALLOWED;
+            this.pickup = AbstractMonkeyPoo.Pickup.ALLOWED;
         }
 
     }
@@ -356,7 +356,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
             this.baseDamage = p_36761_.getDouble("damage");
         }
 
-        this.pickup = AbstractArrow.Pickup.byOrdinal(p_36761_.getByte("pickup"));
+        this.pickup = AbstractMonkeyPoo.Pickup.byOrdinal(p_36761_.getByte("pickup"));
         this.setCritArrow(p_36761_.getBoolean("crit"));
         this.setPierceLevel(p_36761_.getByte("PierceLevel"));
         if (p_36761_.contains("SoundEvent", 8)) {
@@ -369,7 +369,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
     public void setOwner(@Nullable Entity p_36770_) {
         super.setOwner(p_36770_);
         if (p_36770_ instanceof Player) {
-            this.pickup = ((Player)p_36770_).getAbilities().instabuild ? AbstractArrow.Pickup.CREATIVE_ONLY : AbstractArrow.Pickup.ALLOWED;
+            this.pickup = ((Player)p_36770_).getAbilities().instabuild ? AbstractMonkeyPoo.Pickup.CREATIVE_ONLY : AbstractMonkeyPoo.Pickup.ALLOWED;
         }
 
     }

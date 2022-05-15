@@ -8,6 +8,7 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.BowItem;
 
 import java.util.EnumSet;
+import java.util.Objects;
 
 /**
  * {@link net.minecraft.world.entity.ai.goal.RangedBowAttackGoal}
@@ -16,7 +17,7 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
 
     private final T mob;
     private final double speedModifier;
-    private int attackIntervalMin;
+    private int attackInterval;
     private final float attackRadiusSqr;
     private int attackTime = -1;
     private int seeTime;
@@ -24,16 +25,12 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public RangedMonkeyPooAttackGoal(T p_25792_, double p_25793_, int p_25794_, float p_25795_) {
-        this.mob = p_25792_;
-        this.speedModifier = p_25793_;
-        this.attackIntervalMin = p_25794_;
-        this.attackRadiusSqr = p_25795_ * p_25795_;
+    public RangedMonkeyPooAttackGoal(T mobEntity, double speedModifier, int attackInterval, float attackRadius) {
+        this.mob = mobEntity;
+        this.speedModifier = speedModifier;
+        this.attackInterval = attackInterval;
+        this.attackRadiusSqr = attackRadius * attackRadius;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-    }
-
-    public void setMinAttackInterval(int p_25798_) {
-        this.attackIntervalMin = p_25798_;
     }
 
     public boolean canUse() {
@@ -47,6 +44,7 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
     public void start() {
         super.start();
         this.mob.setAggressive(true);
+
     }
 
     public void stop() {
@@ -54,11 +52,14 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
         this.mob.setAggressive(false);
         this.seeTime = 0;
         this.attackTime = -1;
-        this.mob.stopUsingItem();
     }
 
     public boolean requiresUpdateEveryTick() {
         return true;
+    }
+
+    public boolean shouldThrowPoo() {
+        return attackTime % attackInterval == 0;
     }
 
     public void tick() {
@@ -110,20 +111,16 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
                 this.mob.getLookControl().setLookAt(targetEntity, 30.0F, 30.0F);
             }
 
-            if (this.mob.isUsingItem()) {
-                if (!hasLOSOnTarget && this.seeTime < -60) {
-                    this.mob.stopUsingItem();
-                } else if (hasLOSOnTarget) {
-                    int i = this.mob.getTicksUsingItem();
-                    if (i >= 20) {
-                        this.mob.stopUsingItem();
-                        this.mob.performRangedAttack(targetEntity, BowItem.getPowerForTime(i));
-                        this.attackTime = this.attackIntervalMin;
-                    }
+
+            if (!hasLOSOnTarget && this.seeTime < -60) {
+                this.stop();
+            } else if (hasLOSOnTarget) {
+                ++attackTime;
+                if (this.shouldThrowPoo()) {
+                    this.mob.performRangedAttack(targetEntity, 1.0F);
                 }
-            } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof ItemMonkeyPoo));
             }
+
 
         }
     }
