@@ -4,6 +4,7 @@ import com.nuggylib.naughtymonkeys.common.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,12 +44,14 @@ public class NaughtyMonkeys
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         NaughtyMonkeysBlocks.BLOCKS.register(modbus);
+        NaughtyMonkeysBlocks.VANILLA_BLOCKS.register(modbus);
         NaughtyMonkeysItems.ITEMS.register(modbus);
         NaughtyMonkeysEntities.ENTITIES.register(modbus);
         NaughtyMonkeysEntities.SPAWN_EGGS.register(modbus);
         NaughtyMonkeysEffects.MOB_EFFECTS.register(modbus);
         NaughtyMonkeysFoliagePlacers.FOLIAGE_PLACERS.register(modbus);
         NaughtyMonkeysTreeDecorators.TREE_DECORATOR_TYPES.register(modbus);
+
     }
 
     /**

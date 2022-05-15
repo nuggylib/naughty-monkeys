@@ -10,14 +10,12 @@ import com.nuggylib.naughtymonkeys.common.config.Config;
 import com.nuggylib.naughtymonkeys.common.entity.BabyMonkey;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.MonkeyPoo;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome.*;
 import net.minecraft.world.level.biome.MobSpawnSettings.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -118,7 +116,7 @@ public class NaughtyMonkeysEntities {
 
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityType<?>> evt) {
-        SpawnPlacements.register(MONKEY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+        SpawnPlacements.register(MONKEY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monkey::checkSpawnRules);
         SpawnPlacements.register(BABY_MONKEY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     }
 

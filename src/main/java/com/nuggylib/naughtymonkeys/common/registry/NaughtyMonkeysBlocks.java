@@ -26,6 +26,10 @@ import net.minecraftforge.registries.RegistryObject;
 public class NaughtyMonkeysBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, NaughtyMonkeys.ID);
+    public static final DeferredRegister<Block> VANILLA_BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "minecraft");
+
+    // Overrides vanilla jungle blocks
+    public static final RegistryObject<Block> JUNGLE_LEAVES = VANILLA_BLOCKS.register("jungle_leaves", () ->  NaughtyMonkeysBlocks.leaves(SoundType.GRASS));
 
     public static final RegistryObject<Block> BLOCK_OF_MONKEY_POO = BLOCKS.register("block_of_monkey_poo", () -> new BlockOfMonkeyPoo(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
     public static final RegistryObject<Block> BLOCK_OF_BANANA = BLOCKS.register("block_of_banana", () -> new BlockOfBanana(BlockBehaviour.Properties.of(Material.DIRT).strength(2.0F, 6.0F).sound(SoundType.SLIME_BLOCK)));
@@ -47,22 +51,15 @@ public class NaughtyMonkeysBlocks {
         }).strength(2.0F).sound(SoundType.WOOD));
     }
 
-    /**
-     * Static helper used to determine if the given entity is a monkey.
-     *
-     * This method is used to control what can spawn on the banana leaves
-     *
-     * @return  true if the given entity is a monkey, otherwise false
-     */
-    public static Boolean monkey(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> p_50825_) {
-        return p_50825_ == NaughtyMonkeysEntities.MONKEY.get();
+    public static Boolean ocelotOrParrotOrMonkey(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> spawnEntity) {
+        return spawnEntity == NaughtyMonkeysEntities.MONKEY.get() || spawnEntity == EntityType.OCELOT || spawnEntity == EntityType.PARROT;
     }
 
     /**
      * Static helper method taken from Minecraft's {@link net.minecraft.world.level.block.Blocks} class used to generate leaves blocks for registration
      */
-    private static LeavesBlock leaves(SoundType soundType) {
-        return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isValidSpawn(NaughtyMonkeysBlocks::monkey).isSuffocating(NaughtyMonkeysBlocks::never).isViewBlocking(NaughtyMonkeysBlocks::never));
+    public static LeavesBlock leaves(SoundType soundType) {
+        return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isValidSpawn(NaughtyMonkeysBlocks::ocelotOrParrotOrMonkey).isSuffocating(NaughtyMonkeysBlocks::never).isViewBlocking(NaughtyMonkeysBlocks::never));
     }
 
     /**
@@ -71,5 +68,4 @@ public class NaughtyMonkeysBlocks {
     private static Boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
         return (boolean)false;
     }
-    
 }

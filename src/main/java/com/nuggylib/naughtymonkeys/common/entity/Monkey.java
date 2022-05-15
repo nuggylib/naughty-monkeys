@@ -4,12 +4,15 @@ import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.RangedMonkeyPooAttackGoal;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.AbstractMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.NaughtyMonkeysProjectileUtil;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -21,10 +24,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 /**
- * {@link net.minecraft.world.entity.monster.Skeleton}
+ * {@link net.minecraft.world.entity.monster.Skeleton} {@link net.minecraft.world.level.block.Blocks}
  */
 public class Monkey extends Animal implements RangedAttackMob {
     private int eatAnimationTick;
@@ -111,5 +117,11 @@ public class Monkey extends Animal implements RangedAttackMob {
         abstractMonkeyPoo.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F, (float)(14 - this.level.getDifficulty().getId() * 4));
         this.playSound(SoundEvents.SNOWBALL_THROW, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(abstractMonkeyPoo);
+    }
+
+    public static boolean checkSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor levelAccessor, MobSpawnType p_27580_, BlockPos blockPos, Random p_27582_) {
+        // TODO: Add a custom tag
+//        return levelAccessor.getBlockState(blockPos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) &&
+        return isBrightEnoughToSpawn(levelAccessor, blockPos);
     }
 }
