@@ -17,6 +17,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created using Blockbench
@@ -34,6 +35,12 @@ public class ModelMonkey<T extends Monkey> extends EntityModel<T> {
 	private final ModelPart leg_left;
 	private final ModelPart leg_right;
 	private float headXRot;
+	private float babyYHeadOffset;
+	private boolean scaleHead;
+	private float babyHeadScale;
+	private float babyZHeadOffset;
+	private float babyBodyScale;
+	private float bodyYOffset;
 
 	public ModelMonkey(ModelPart root) {
 		this.torso = root.getChild("torso");
@@ -43,6 +50,13 @@ public class ModelMonkey<T extends Monkey> extends EntityModel<T> {
 		this.arm_right = root.getChild("arm_right");
 		this.leg_left = root.getChild("leg_left");
 		this.leg_right = root.getChild("leg_right");
+		boolean scaleHead = true;
+		float babyYHeadOffset = 0;
+		float babyZHeadOffset = 0;
+		float babyHeadScale = 2;
+//      The scale of the baby's body is determined by 1 / babyBodyScale
+		float babyBodyScale = 2;
+		float bodyYOffset = 0;
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -72,13 +86,13 @@ public class ModelMonkey<T extends Monkey> extends EntityModel<T> {
 	}
 
 	@Override
-	public void prepareMobModel(T monkey, float p_103688_, float p_103689_, float p_103690_) {
+	public void prepareMobModel(@NotNull T monkey, float p_103688_, float p_103689_, float p_103690_) {
 		super.prepareMobModel(monkey, p_103688_, p_103689_, p_103690_);
 		this.headXRot = monkey.getHeadEatAngleScale(p_103690_);
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(@NotNull T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.xRot = headPitch * ((float)Math.PI / 180F);
 		this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 		this.leg_right.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
@@ -88,7 +102,7 @@ public class ModelMonkey<T extends Monkey> extends EntityModel<T> {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		torso.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 		head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 		tail.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
@@ -96,5 +110,20 @@ public class ModelMonkey<T extends Monkey> extends EntityModel<T> {
 		arm_right.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg_left.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 		leg_right.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+//		if (this.young) {
+//			poseStack.pushPose();
+//			if (this.scaleHead) {
+//				float f = 1.5F / this.babyHeadScale;
+//				poseStack.scale(f, f, f);
+//			}
+//		}
+	}
+
+	private Iterable<ModelPart> bodyParts() {
+		return null;
+	}
+
+	private Iterable<ModelPart> headParts() {
+		return null;
 	}
 }
