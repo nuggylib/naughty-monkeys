@@ -8,7 +8,6 @@ import com.nuggylib.naughtymonkeys.common.world.entity.projectile.NaughtyMonkeys
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -121,6 +120,8 @@ public class Monkey extends Animal implements RangedAttackMob {
     }
 
     public static boolean checkSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor levelAccessor, MobSpawnType p_27580_, BlockPos blockPos, Random p_27582_) {
-        return levelAccessor.getBlockState(blockPos.below()).is(NaughtyMonkeysTags.MONKEYS_SPAWNABLE_ON) && isBrightEnoughToSpawn(levelAccessor, blockPos);
+        return (levelAccessor.getBlockState(blockPos.below()).is(NaughtyMonkeysTags.MONKEYS_SPAWNABLE_ON) ||
+                levelAccessor.getBlockState(blockPos.above()).is(NaughtyMonkeysTags.MONKEYS_SPAWNABLE_ON)) &&
+                isBrightEnoughToSpawn(levelAccessor, blockPos);
     }
 }

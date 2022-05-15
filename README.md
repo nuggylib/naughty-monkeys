@@ -48,3 +48,16 @@ the base version of the game that the mod is for. As such, MinecraftForge recomm
 * `MCVERSION-MAJORMOD.MAJORAPI.MINOR.PATCH`
 
 See [Forge Versioning docs](https://mcforge.readthedocs.io/en/1.18.x/gettingstarted/versioning/) for more information
+
+## TO DO
+
+### Remove "coremodding" elements
+
+Because the Forge docs are both wholly unclear and/or frequently inaccurate, we've had to "wing it" with a lot of these 
+implementations. For example, Forge docs say to use something called a `TagKey` when adding tags; this class does not
+appear to exist. This is not the only example of issues in their docs.
+
+Unfortunately, once we get it working, we need to get it "right".
+
+**The main reason to remove elements of coremodding is because it can lead to problems when your mod is loaded in with
+other mods.**
