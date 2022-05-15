@@ -102,7 +102,6 @@ public class Monkey extends Animal implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity monkey, float p_32142_) {
-        // TODO: Prevent machine gun poo throwing (may also be fixed in the goal, but not sure)
         ItemStack itemstack = new ItemStack(NaughtyMonkeysItems.MONKEY_POO.get());
         AbstractMonkeyPoo abstractMonkeyPoo = this.getMonkeyPoo(itemstack, p_32142_);
         double d0 = monkey.getX() - this.getX();

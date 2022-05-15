@@ -17,6 +17,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome.*;
 import net.minecraft.world.level.biome.MobSpawnSettings.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -148,8 +149,8 @@ public class NaughtyMonkeysEntities {
 
         @SubscribeEvent
         public static void createEntitySpawns(BiomeLoadingEvent event) {
-            registerWorldSpawns(event, MONKEY.get(), MobCategory.CREATURE, Config.COMMON.MONKEY_WEIGHT, BiomeCategory.PLAINS);
-            registerWorldSpawns(event, BABY_MONKEY.get(), MobCategory.CREATURE, Config.COMMON.BABY_MONKEY_WEIGHT, BiomeCategory.PLAINS);
+            registerWorldSpawns(event, MONKEY.get(), MobCategory.CREATURE, Config.COMMON.MONKEY_WEIGHT, BiomeCategory.JUNGLE);
+            registerWorldSpawns(event, BABY_MONKEY.get(), MobCategory.CREATURE, Config.COMMON.BABY_MONKEY_WEIGHT, BiomeCategory.JUNGLE);
         }
     }
 

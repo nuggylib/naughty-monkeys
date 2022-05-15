@@ -18,7 +18,7 @@ public class Config {
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("Entities");
-            MONKEY_WEIGHT = builder.defineInRange("monkey_weight", 4, 1, 1000000);
+            MONKEY_WEIGHT = builder.defineInRange("monkey_weight", 1000000, 1, 1000000);
             BABY_MONKEY_WEIGHT = builder.defineInRange("baby_monkey_weight", 2, 1, 1000000);
             builder.pop();
         }

@@ -21,9 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 /**
  * Block registry class
  *
- * Inspired by the TwilightForest blocks registry class
- *
- * @see <a href="https://github.com/TeamTwilight/twilightforest/blob/1.18.x/src/main/java/twilightforest/block/TFBlocks.java">TwilightForest Repo - TFBlocks.java</a>
+ * {@link Blocks}
  */
 public class NaughtyMonkeysBlocks {
 
@@ -56,7 +54,7 @@ public class NaughtyMonkeysBlocks {
      *
      * @return  true if the given entity is a monkey, otherwise false
      */
-    private static Boolean monkey(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> p_50825_) {
+    public static Boolean monkey(BlockState p_50822_, BlockGetter p_50823_, BlockPos p_50824_, EntityType<?> p_50825_) {
         return p_50825_ == NaughtyMonkeysEntities.MONKEY.get();
     }
 
