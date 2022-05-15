@@ -30,13 +30,6 @@ public class ModelBabyMonkey<T extends BabyMonkey> extends AgeableListModel<T> {
     private final ModelPart rightFrontLeg;
     private final ModelPart leftHindLeg;
     private final ModelPart rightHindLeg;
-    private float headXRot;
-    private final boolean scaleHead;
-    private final float babyYHeadOffset;
-    private final float babyZHeadOffset;
-    private final float babyHeadScale;
-    private final float babyBodyScale;
-    private final float bodyYOffset;
 
     public ModelBabyMonkey(ModelPart root) {
         this.body = root.getChild("torso");
@@ -46,13 +39,13 @@ public class ModelBabyMonkey<T extends BabyMonkey> extends AgeableListModel<T> {
         this.rightFrontLeg = root.getChild("arm_right");
         this.leftHindLeg = root.getChild("leg_left");
         this.rightHindLeg = root.getChild("leg_right");
-        this.scaleHead = true;
-        this.babyYHeadOffset = 0;
-        this.babyZHeadOffset = 0;
-        this.babyHeadScale = 2;
+        boolean scaleHead = true;
+        float babyYHeadOffset = 0;
+        float babyZHeadOffset = 0;
+        float babyHeadScale = 2;
 //      The scale of the baby's body is determined by 1 / babyBodyScale
-        this.babyBodyScale = 2;
-        this.bodyYOffset = 0;
+        float babyBodyScale = 2;
+        float bodyYOffset = 0;
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -75,7 +68,7 @@ public class ModelBabyMonkey<T extends BabyMonkey> extends AgeableListModel<T> {
     @Override
     public void prepareMobModel(T baby_monkey, float p_103688_, float p_103689_, float p_103690_) {
         super.prepareMobModel(baby_monkey, p_103688_, p_103689_, p_103690_);
-        this.headXRot = baby_monkey.getHeadEatAngleScale(p_103690_);
+        float headXRot = baby_monkey.getHeadEatAngleScale(p_103690_);
     }
 
     @Override
