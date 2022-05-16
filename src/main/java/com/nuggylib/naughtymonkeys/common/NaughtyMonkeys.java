@@ -112,8 +112,7 @@ public class NaughtyMonkeys
         List<MobSpawnSettings.SpawnerData> spawns = event.getSpawns().getSpawner(MobCategory.CREATURE);
         // Remove "default" spawn logic inherited for Monkeys
         spawns.removeIf(e -> e.type == NaughtyMonkeysEntities.MONKEY.get());
-        // TODO: Figure out how to boost spawn rate for certain areas (or use a spawner block)
-        // Make monkeys spawn more *weighted* (just makes it so most, if not all, mobs that spawn are monkeys - not ideal)
+        // monkeys spawn in groups of 5-8 (or near it; there appear to be outside influences that can impact this - namely other mobs' spawning)
         spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 50, 5, 8));
 
         addVegetal(event.getCategory(), event.getGeneration());
