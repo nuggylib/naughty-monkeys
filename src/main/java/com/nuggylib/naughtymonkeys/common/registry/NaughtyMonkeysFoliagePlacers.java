@@ -1,7 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
-import com.nuggylib.naughtymonkeys.common.feature.BananaPlantFoliagePlacer;
+import com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature.BananaPlantFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.registries.DeferredRegister;

@@ -2,14 +2,14 @@ package com.nuggylib.naughtymonkeys.common;
 
 import com.nuggylib.naughtymonkeys.common.registry.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
+import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,6 +26,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Supplier;
+
+import static net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(NaughtyMonkeys.ID)
@@ -39,7 +42,7 @@ public class NaughtyMonkeys
 
     public NaughtyMonkeys() {
         // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
         // Register the enqueueIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
@@ -70,11 +73,6 @@ public class NaughtyMonkeys
         }
     };
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
-
-    }
-
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
 
@@ -97,13 +95,27 @@ public class NaughtyMonkeys
         return new ResourceLocation(ID, MODEL_DIR + name);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    private void onCommonSetup(final FMLCommonSetupEvent event) {
+        NaughtyMonkeysConfiguredFeatures.init();
+        NaughtyMonkeysPlacedFeatures.init();
+    }
+
+    public static void addVegetal(Biome.BiomeCategory category, BiomeGenerationSettingsBuilder gen) {
+        List<Supplier<PlacedFeature>> vegetationFeatures = gen.getFeatures(VEGETAL_DECORATION);
+        if (category == Biome.BiomeCategory.JUNGLE || category == Biome.BiomeCategory.PLAINS) {
+            vegetationFeatures.add(() -> NaughtyMonkeysPlacedFeatures.BANANA_PLANT);
+        }
+    }
+
+    @SubscribeEvent
     public void onBiomeLoadingEvent(BiomeLoadingEvent event) {
         List<MobSpawnSettings.SpawnerData> spawns = event.getSpawns().getSpawner(MobCategory.CREATURE);
-
         // Remove "default" spawn logic inherited for Monkeys
         spawns.removeIf(e -> e.type == NaughtyMonkeysEntities.MONKEY.get());
-        // Make monkeys spawn more
-        spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 10000, 1, 4));
+        // monkeys spawn in groups of 5-8 (or near it; there appear to be outside influences that can impact this - namely other mobs' spawning)
+        spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 50, 5, 8));
+
+        addVegetal(event.getCategory(), event.getGeneration());
     }
+
 }

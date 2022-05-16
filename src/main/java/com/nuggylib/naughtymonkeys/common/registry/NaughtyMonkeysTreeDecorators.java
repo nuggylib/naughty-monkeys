@@ -1,7 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.registry;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
-import com.nuggylib.naughtymonkeys.common.feature.treedecorator.BananasDecorator;
+import com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature.treedecorator.BananasDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,9 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.registry;
 
-import com.google.common.collect.ImmutableList;
-import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
-import com.nuggylib.naughtymonkeys.common.feature.BananaPlantFoliagePlacer;
-import com.nuggylib.naughtymonkeys.common.feature.treedecorator.BananasDecorator;
+import com.nuggylib.naughtymonkeys.common.world.level.levelgen.feature.BananaPlantFoliagePlacer;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -14,21 +11,18 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.treedecorators.CocoaDecorator;
-import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@Mod.EventBusSubscriber(modid = NaughtyMonkeys.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class NaughtyMonkeysFeatures {
+public class NaughtyMonkeysConfiguredFeatures {
 
     public static ConfiguredFeature<TreeConfiguration, ?> BANANA_PLANT;
 
     public static void init() {
-        BANANA_PLANT = register("banana_plant", Feature.TREE.configured(createBananaPlant().decorators(ImmutableList.of(new BananasDecorator(1.0F))).ignoreVines().build()));
+        BANANA_PLANT = register("banana_plant", Feature.TREE.configured(createBananaPlant().build()));
+    }
+
+    private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
+        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key, configuredFeature);
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block logBlock, Block leavesBlock, int baseHeight, int heightRandA, int heightRandB, int p_195152_) {
@@ -37,15 +31,6 @@ public class NaughtyMonkeysFeatures {
 
     private static TreeConfiguration.TreeConfigurationBuilder createBananaPlant() {
         return createStraightBlobTree(NaughtyMonkeysBlocks.BANANA_STEM.get(), NaughtyMonkeysBlocks.BANANA_LEAVES.get(), 4, 2, 0, 2).ignoreVines();
-    }
-
-    private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key, configuredFeature);
-    }
-
-    @SubscribeEvent
-    public static void onCommonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(NaughtyMonkeysFeatures::init);
     }
 
 }
