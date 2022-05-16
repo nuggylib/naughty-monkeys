@@ -76,10 +76,7 @@ public abstract class AbstractMonkeyPoo extends Projectile {
     protected AbstractMonkeyPoo(EntityType<? extends AbstractMonkeyPoo> p_36717_, LivingEntity p_36718_, Level p_36719_) {
         this(p_36717_, p_36718_.getX(), p_36718_.getEyeY() - (double)0.1F, p_36718_.getZ(), p_36719_);
         this.setOwner(p_36718_);
-        if (p_36718_ instanceof Player) {
-            this.pickup = AbstractMonkeyPoo.Pickup.ALLOWED;
-        }
-
+        this.pickup = AbstractMonkeyPoo.Pickup.ALLOWED;
     }
 
     public void setSoundEvent(SoundEvent p_36741_) {
