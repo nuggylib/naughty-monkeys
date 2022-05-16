@@ -114,7 +114,7 @@ public class NaughtyMonkeys
         spawns.removeIf(e -> e.type == NaughtyMonkeysEntities.MONKEY.get());
         // TODO: Figure out how to boost spawn rate for certain areas (or use a spawner block)
         // Make monkeys spawn more *weighted* (just makes it so most, if not all, mobs that spawn are monkeys - not ideal)
-        spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 10000, 1, 4));
+        spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 50, 5, 8));
 
         addVegetal(event.getCategory(), event.getGeneration());
     }
