@@ -1,6 +1,7 @@
 package com.nuggylib.naughtymonkeys.common.world.entity.projectile;
 
 import com.google.common.collect.Lists;
+import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEffects;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysSounds;
 import com.nuggylib.naughtymonkeys.common.world.damagesource.NaughtyMonkeysDamageSource;
@@ -280,9 +281,15 @@ public abstract class AbstractMonkeyPoo extends Projectile {
     protected void onHitEntity(EntityHitResult target) {
         super.onHitEntity(target);
         if (target.getEntity() instanceof LivingEntity livingTarget) {
-            livingTarget.hurt(DamageSource.thrown(this, this.getOwner()), 1.0F);
-            livingTarget.addEffect(new MobEffectInstance(NaughtyMonkeysEffects.POO_FLU.get(), 500));
-            this.discard();
+            if (livingTarget instanceof Monkey) {
+                // Monkey poo has no effect on monkeys
+                this.discard();
+            } else {
+                livingTarget.hurt(DamageSource.thrown(this, this.getOwner()), 1.0F);
+                livingTarget.addEffect(new MobEffectInstance(NaughtyMonkeysEffects.POO_FLU.get(), 500));
+                this.discard();
+            }
+
         }
     }
 
