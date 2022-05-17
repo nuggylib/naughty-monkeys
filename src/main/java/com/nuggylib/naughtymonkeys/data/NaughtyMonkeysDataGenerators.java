@@ -1,7 +1,7 @@
 package com.nuggylib.naughtymonkeys.data;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
-import com.nuggylib.naughtymonkeys.data.loot.NaughtyMonkeysLootTableProvider;
+import com.nuggylib.naughtymonkeys.data.loot.NaughtyMonkeysLootTables;
 import com.nuggylib.naughtymonkeys.common.tag.NaughtyMonkeysTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -24,6 +24,6 @@ public class NaughtyMonkeysDataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         generator.addProvider(new NaughtyMonkeysTagsProvider(generator, NaughtyMonkeys.ID, existingFileHelper));
-        generator.addProvider(new NaughtyMonkeysLootTableProvider(generator));
+        generator.addProvider(new NaughtyMonkeysLootTables(generator));
     }
 }
