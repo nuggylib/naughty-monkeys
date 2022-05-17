@@ -1,8 +1,14 @@
 package com.nuggylib.naughtymonkeys.common;
 
+import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.registry.*;
+import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.FleeStinkyPlayersGoal;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
@@ -10,6 +16,8 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import static net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION;
@@ -116,6 +125,16 @@ public class NaughtyMonkeys
         spawns.add(new MobSpawnSettings.SpawnerData(NaughtyMonkeysEntities.MONKEY.get(), 50, 5, 8));
 
         addVegetal(event.getCategory(), event.getGeneration());
+    }
+
+    @SubscribeEvent
+    public void onEntityMountEvent(EntityJoinWorldEvent event) {
+        if (event.getEntity() instanceof Animal animal && !(animal instanceof Monkey)) {
+            animal.goalSelector.addGoal(1, new FleeStinkyPlayersGoal<>(animal, Player.class, Objects::nonNull, 6, 1, 1.3, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
+        }
+        if (event.getEntity() instanceof Monster monster) {
+            monster.goalSelector.addGoal(1, new FleeStinkyPlayersGoal<>(monster, Player.class, Objects::nonNull, 6, 1, 1.3, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
+        }
     }
 
 }

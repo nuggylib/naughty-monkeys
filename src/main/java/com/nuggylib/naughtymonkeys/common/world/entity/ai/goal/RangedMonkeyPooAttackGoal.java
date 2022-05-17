@@ -1,14 +1,10 @@
 package com.nuggylib.naughtymonkeys.common.world.entity.ai.goal;
 
-import com.nuggylib.naughtymonkeys.common.item.ItemMonkeyPoo;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.BowItem;
 
 import java.util.EnumSet;
-import java.util.Objects;
 
 /**
  * {@link net.minecraft.world.entity.ai.goal.RangedBowAttackGoal}

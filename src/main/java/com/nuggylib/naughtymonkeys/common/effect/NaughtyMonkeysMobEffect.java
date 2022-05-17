@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.effect;
 
+import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEffects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -7,11 +8,19 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class NaughtyMonkeysMobEffect extends MobEffect {
@@ -29,9 +38,6 @@ public class NaughtyMonkeysMobEffect extends MobEffect {
             if (affectedLivingEntity.getHealth() > (affectedLivingEntity.getMaxHealth() / 2)) {
                 affectedLivingEntity.hurt(DamageSource.MAGIC, 1.0F);
             }
-        }
-        if (this == NaughtyMonkeysEffects.STINKY.get()) {
-
         }
     }
 
