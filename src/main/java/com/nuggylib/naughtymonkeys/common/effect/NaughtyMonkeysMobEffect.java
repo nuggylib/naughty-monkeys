@@ -4,11 +4,20 @@ import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEffects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.phys.Vec3;
+
+import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
 public class NaughtyMonkeysMobEffect extends MobEffect {
-    public NaughtyMonkeysMobEffect(MobEffectCategory p_19451_, int color) {
-        super(p_19451_, color);
+
+    public NaughtyMonkeysMobEffect(MobEffectCategory mobEffectCategory, int color) {
+        super(mobEffectCategory, color);
     }
 
     @Override
@@ -16,9 +25,13 @@ public class NaughtyMonkeysMobEffect extends MobEffect {
         super.applyEffectTick(affectedLivingEntity, p_19468_);
 
         if (this == NaughtyMonkeysEffects.POO_FLU.get()) {
-            if (affectedLivingEntity.getHealth() > 1.0F) {
+            // Never reduce target below half health
+            if (affectedLivingEntity.getHealth() > (affectedLivingEntity.getMaxHealth() / 2)) {
                 affectedLivingEntity.hurt(DamageSource.MAGIC, 1.0F);
             }
+        }
+        if (this == NaughtyMonkeysEffects.STINKY.get()) {
+
         }
     }
 

@@ -286,10 +286,10 @@ public abstract class AbstractMonkeyPoo extends Projectile {
                 this.discard();
             } else {
                 livingTarget.hurt(DamageSource.thrown(this, this.getOwner()), 1.0F);
-                livingTarget.addEffect(new MobEffectInstance(NaughtyMonkeysEffects.POO_FLU.get(), 500));
+                livingTarget.addEffect(new MobEffectInstance(NaughtyMonkeysEffects.POO_FLU.get(), 100));
+                livingTarget.addEffect(new MobEffectInstance(NaughtyMonkeysEffects.STINKY.get(), 300));
                 this.discard();
             }
-
         }
     }
 
