@@ -59,8 +59,8 @@ public class FleeStinkyPlayersGoal<T extends LivingEntity> extends Goal {
             return false;
         } else {
             Collection<MobEffectInstance> activeEffects = this.toAvoid.getActiveEffects();
+            // Only avoid when the player has the stinky effect active
             if (activeEffects.stream().anyMatch((mobEffectInstance -> mobEffectInstance.getEffect() == NaughtyMonkeysEffects.STINKY.get()))) {
-                System.out.println("Stinky player encountered - fleeing!");
                 Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, 16, 7, this.toAvoid.position());
                 if (vec3 == null) {
                     return false;
