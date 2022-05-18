@@ -141,12 +141,4 @@ public class NaughtyMonkeys
         }
     }
 
-    @SubscribeEvent
-    public void onPreRenderPlayer(RenderPlayerEvent.Pre event) {
-        if (event.getEntity() instanceof Player player) {
-            LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> playerRenderer = event.getRenderer();
-            Field protectedModelField = 
-        }
-    }
-
 }
