@@ -3,6 +3,9 @@ package com.nuggylib.naughtymonkeys.common;
 import com.nuggylib.naughtymonkeys.common.entity.Monkey;
 import com.nuggylib.naughtymonkeys.common.registry.*;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.FleeStinkyPlayersGoal;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.MobCategory;
@@ -14,12 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -134,6 +136,16 @@ public class NaughtyMonkeys
         }
         if (event.getEntity() instanceof Monster monster) {
             monster.goalSelector.addGoal(1, new FleeStinkyPlayersGoal<>(monster, Player.class, Objects::nonNull, 6, 1, 1.3, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test));
+        }
+    }
+
+    @SubscribeEvent
+    public void onPreRenderPlayer(RenderPlayerEvent.Pre event) {
+        if (event.getEntity() instanceof Player player) {
+            // TODO: https://mcforge.readthedocs.io/en/latest/advanced/accesstransformers/
+            // TODO: https://forums.minecraftforge.net/topic/103718-1171-replacing-player-model-with-a-mob-model/
+            LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> playerRenderer = event.getRenderer();
+
         }
     }
 
