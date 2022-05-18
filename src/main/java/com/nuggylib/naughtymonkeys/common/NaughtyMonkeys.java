@@ -35,6 +35,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -143,10 +144,8 @@ public class NaughtyMonkeys
     @SubscribeEvent
     public void onPreRenderPlayer(RenderPlayerEvent.Pre event) {
         if (event.getEntity() instanceof Player player) {
-            // TODO: https://mcforge.readthedocs.io/en/latest/advanced/accesstransformers/
-            // TODO: https://forums.minecraftforge.net/topic/103718-1171-replacing-player-model-with-a-mob-model/
             LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> playerRenderer = event.getRenderer();
-            playerRenderer.model;
+            Field protectedModelField = 
         }
     }
 
