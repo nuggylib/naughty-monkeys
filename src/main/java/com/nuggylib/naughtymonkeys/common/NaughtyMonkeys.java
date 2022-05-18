@@ -8,6 +8,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
@@ -145,7 +146,7 @@ public class NaughtyMonkeys
             // TODO: https://mcforge.readthedocs.io/en/latest/advanced/accesstransformers/
             // TODO: https://forums.minecraftforge.net/topic/103718-1171-replacing-player-model-with-a-mob-model/
             LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> playerRenderer = event.getRenderer();
-
+            playerRenderer.model;
         }
     }
 
