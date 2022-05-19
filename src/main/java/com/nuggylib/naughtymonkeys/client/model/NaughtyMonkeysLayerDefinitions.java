@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 public class NaughtyMonkeysLayerDefinitions {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(NaughtyMonkeysModelLayers.MONKEY, ModelMonkey::createBodyLayer);
-        event.registerLayerDefinition(NaughtyMonkeysModelLayers.BABY_MONKEY, ModelBabyMonkey::createBodyLayer);
+        event.registerLayerDefinition(NaughtyMonkeysModelLayers.LAYER_LOC_MONKEY, ModelMonkey::createBodyLayer);
+        event.registerLayerDefinition(NaughtyMonkeysModelLayers.LAYER_LOC_BABY_MONKEY, ModelBabyMonkey::createBodyLayer);
     }
 }

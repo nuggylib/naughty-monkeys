@@ -1,10 +1,16 @@
 package com.nuggylib.naughtymonkeys.common.world.entity.ai.goal;
 
+import com.nuggylib.naughtymonkeys.common.item.armor.BananaHat;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * {@link net.minecraft.world.entity.ai.goal.RangedBowAttackGoal}
@@ -61,6 +67,14 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
     public void tick() {
         LivingEntity targetEntity = this.mob.getTarget();
         if (targetEntity != null) {
+            List<ItemStack> armorSlots = (List<ItemStack>) targetEntity.getArmorSlots();
+            boolean targetHasBananaHat = armorSlots.stream().filter(itemStack -> itemStack.getItem() instanceof BananaHat).toList().size() > 0;
+            // Prevent hostile monkey behavior if target is wearing a banana hat
+            if (targetHasBananaHat) {
+                this.stop();
+                return;
+            }
+
             double distance = this.mob.distanceToSqr(targetEntity.getX(), targetEntity.getY(), targetEntity.getZ());
             boolean hasLOSOnTarget = this.mob.getSensing().hasLineOfSight(targetEntity);
             boolean continuousLOS = this.seeTime > 0;

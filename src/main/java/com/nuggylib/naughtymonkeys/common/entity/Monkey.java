@@ -4,6 +4,7 @@ import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysTags;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.RangedMonkeyPooAttackGoal;
+import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.TemptOnlyByBananaHatWearersGoal;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.AbstractMonkeyPoo;
 import com.nuggylib.naughtymonkeys.common.world.entity.projectile.NaughtyMonkeysProjectileUtil;
 import net.minecraft.core.BlockPos;
@@ -64,7 +65,7 @@ public class Monkey extends Animal implements RangedAttackMob {
         // monkey breeds
         goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         // monkey tempted by bananas
-        goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
+        goalSelector.addGoal(3, new TemptOnlyByBananaHatWearersGoal<>(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
         // babies follow parent monkeys
         goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
         // monkey avoid water
