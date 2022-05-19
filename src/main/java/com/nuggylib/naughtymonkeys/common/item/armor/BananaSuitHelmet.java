@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.item.armor;
 
+import com.nuggylib.naughtymonkeys.client.model.NaughtyMonkeysHumanoidModel;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.client.model.HumanoidModel;
@@ -25,10 +26,8 @@ public class BananaSuitHelmet extends ArmorItem {
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        String resourceName = NaughtyMonkeysItems.BANANA_SUIT_HELMET.get().getRegistryName().getPath();
-        String texturePath = String.format("naughtymonkeys:textures/item/%s.png", resourceName);
-        System.out.printf("ARMOR PATH: %s%n", texturePath);
-        return texturePath;
+        System.out.println(String.format("naughtymonkeys:textures/item/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath()));
+        return String.format("naughtymonkeys:textures/item/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath());
     }
 
     /**
@@ -70,7 +69,7 @@ public class BananaSuitHelmet extends ArmorItem {
                 MeshDefinition bananaHelmetMeshDef = new MeshDefinition();
                 PartDefinition bananaHelmetPartDef = bananaHelmetMeshDef.getRoot();
 
-                bananaHelmetPartDef.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(10, 0).addBox(2.0F, -5.0F, -5.0F, 3.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
+                bananaHelmetPartDef.addOrReplaceChild("banana_suit_helmet", CubeListBuilder.create().texOffs(10, 0).addBox(2.0F, -5.0F, -5.0F, 3.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(28, 27).addBox(-5.0F, -17.0F, -5.0F, 10.0F, 12.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(28, 9).addBox(-5.0F, -17.0F, 4.0F, 10.0F, 17.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(0, 0).addBox(-5.0F, -5.0F, -5.0F, 3.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
@@ -78,14 +77,14 @@ public class BananaSuitHelmet extends ArmorItem {
                         .texOffs(0, 0).addBox(4.0F, -17.0F, -4.0F, 1.0F, 17.0F, 8.0F, new CubeDeformation(0.0F))
                         .texOffs(18, 0).addBox(-4.0F, -17.0F, -4.0F, 8.0F, 1.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-//                bananaHelmetPartDef.addOrReplaceChild("hat", CubeListBuilder.create(), _default.head.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("hat", CubeListBuilder.create(), _default.head.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("head", CubeListBuilder.create(), _default.head.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("body", CubeListBuilder.create(), _default.body.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("right_arm", CubeListBuilder.create(), _default.rightArm.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("left_arm", CubeListBuilder.create(), _default.leftArm.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("right_leg", CubeListBuilder.create(), _default.rightLeg.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("left_leg", CubeListBuilder.create(), _default.leftLeg.storePose());
-                HumanoidModel<?> replacement = new HumanoidModel<>(bananaHelmetPartDef.bake(1, 1));
+                HumanoidModel<?> replacement = new NaughtyMonkeysHumanoidModel<>(bananaHelmetPartDef.bake(16, 16));
                 ForgeHooksClient.copyModelProperties(_default, replacement);
                 return replacement;
             }
