@@ -10,13 +10,14 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IItemRenderProperties;
 import org.jetbrains.annotations.Nullable;
 
 public class BananaSuitHelmet extends ArmorItem {
 
-    public BananaSuitHelmet(ArmorMaterial armorMaterial, EquipmentSlot equipmentSlot, Properties properties) {
-        super(armorMaterial, EquipmentSlot.HEAD, properties);
+    public BananaSuitHelmet() {
+        super(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS));
     }
 
     /**
@@ -27,15 +28,38 @@ public class BananaSuitHelmet extends ArmorItem {
     public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer)
     {
         consumer.accept(new IItemRenderProperties() {
+
+            /**
+             * Override getArmorModel
+             * <p>
+             *     This method works by overriding the default behavior of {@link IItemRenderProperties#getArmorModel(LivingEntity, ItemStack, EquipmentSlot, HumanoidModel)}
+             *     so that it provides a modified {@link HumanoidModel} to use instead of the default model.
+             * </p>
+             * <p>
+             *     {@link IItemRenderProperties#getArmorModel(LivingEntity, ItemStack, EquipmentSlot, HumanoidModel)}'s default
+             *     implementation simply returns <code>null</code> by default. This method gets called internally by
+             *     {@link IItemRenderProperties#getBaseArmorModel(LivingEntity, ItemStack, EquipmentSlot, HumanoidModel)}, which
+             *     will do 1 of 2 things:
+             *     <ol>
+             *         <li>If the return value for <code>getArmorModel</code> is <code>null</code>, simply return the default <code>HumanoidModel</code></li>
+             *         <li>If the return value for <code>getArmorModel</code> is set, then the replacement <code>HumanoidModel</code> is returned</li>
+             *     </ol>
+             * </p>
+             *
+             * @param entityLiving The entity wearing the armor
+             * @param itemStack    The itemStack to render the model of
+             * @param armorSlot    The slot the armor is in
+             * @param _default     Original armor model. Will have attributes set.
+             * @return
+             */
             @Nullable
             @Override
             public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> _default) {
 
-                MeshDefinition meshdefinition = new MeshDefinition();
-                PartDefinition partdefinition = meshdefinition.getRoot();
+                MeshDefinition bananaHelmetMeshDef = new MeshDefinition();
+                PartDefinition bananaHelmetPartDef = bananaHelmetMeshDef.getRoot();
 
-                // TODO: Figure out how to add the helmet model to the default model
-                PartDefinition bananaSuitHelmetPartDef = partdefinition.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(10, 0).addBox(2.0F, -5.0F, -5.0F, 3.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
+                bananaHelmetPartDef.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(10, 0).addBox(2.0F, -5.0F, -5.0F, 3.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(28, 27).addBox(-5.0F, -17.0F, -5.0F, 10.0F, 12.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(28, 9).addBox(-5.0F, -17.0F, 4.0F, 10.0F, 17.0F, 1.0F, new CubeDeformation(0.0F))
                         .texOffs(0, 0).addBox(-5.0F, -5.0F, -5.0F, 3.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
@@ -43,8 +67,18 @@ public class BananaSuitHelmet extends ArmorItem {
                         .texOffs(0, 0).addBox(4.0F, -17.0F, -4.0F, 1.0F, 17.0F, 8.0F, new CubeDeformation(0.0F))
                         .texOffs(18, 0).addBox(-4.0F, -17.0F, -4.0F, 8.0F, 1.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-                return IItemRenderProperties.super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
+                bananaHelmetPartDef.addOrReplaceChild("head", CubeListBuilder.create(), _default.head.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("body", CubeListBuilder.create(), _default.body.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("right_arm", CubeListBuilder.create(), _default.rightArm.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("left_arm", CubeListBuilder.create(), _default.leftArm.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("right_leg", CubeListBuilder.create(), _default.rightLeg.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("left_leg", CubeListBuilder.create(), _default.leftLeg.storePose());
+                HumanoidModel<?> replacement = new HumanoidModel<>(bananaHelmetPartDef.bake(1, 1));
+                ForgeHooksClient.copyModelProperties(_default, replacement);
+                return replacement;
             }
         });
+
+
     }
 }
