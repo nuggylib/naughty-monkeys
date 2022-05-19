@@ -1,12 +1,14 @@
 package com.nuggylib.naughtymonkeys.common.item.armor;
 
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
@@ -18,6 +20,15 @@ public class BananaSuitHelmet extends ArmorItem {
 
     public BananaSuitHelmet() {
         super(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS));
+    }
+
+    @Nullable
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+        String resourceName = NaughtyMonkeysItems.BANANA_SUIT_HELMET.get().getRegistryName().getPath();
+        String texturePath = String.format("naughtymonkeys:textures/item/%s.png", resourceName);
+        System.out.printf("ARMOR PATH: %s%n", texturePath);
+        return texturePath;
     }
 
     /**
@@ -67,6 +78,7 @@ public class BananaSuitHelmet extends ArmorItem {
                         .texOffs(0, 0).addBox(4.0F, -17.0F, -4.0F, 1.0F, 17.0F, 8.0F, new CubeDeformation(0.0F))
                         .texOffs(18, 0).addBox(-4.0F, -17.0F, -4.0F, 8.0F, 1.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+//                bananaHelmetPartDef.addOrReplaceChild("hat", CubeListBuilder.create(), _default.head.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("head", CubeListBuilder.create(), _default.head.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("body", CubeListBuilder.create(), _default.body.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("right_arm", CubeListBuilder.create(), _default.rightArm.storePose());
