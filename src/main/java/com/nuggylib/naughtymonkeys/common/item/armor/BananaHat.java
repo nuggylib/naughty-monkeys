@@ -14,16 +14,16 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IItemRenderProperties;
 import org.jetbrains.annotations.Nullable;
 
-public class BananaSuitHelmet extends ArmorItem {
+public class BananaHat extends ArmorItem {
 
-    public BananaSuitHelmet() {
+    public BananaHat() {
         super(ArmorMaterials.LEATHER, EquipmentSlot.HEAD, new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS));
     }
 
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return String.format("naughtymonkeys:textures/armor/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath());
+        return String.format("naughtymonkeys:textures/armor/%s.png", NaughtyMonkeysItems.BANANA_HAT.getId().getPath());
     }
 
     /**
@@ -73,6 +73,7 @@ public class BananaSuitHelmet extends ArmorItem {
                         .texOffs(0, 0).addBox(4.0F, -17.0F, -4.0F, 1.0F, 17.0F, 8.0F, new CubeDeformation(0.0F))
                         .texOffs(18, 0).addBox(-4.0F, -17.0F, -4.0F, 8.0F, 1.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+                // Humanoid mesh parts
                 bananaHelmetPartDef.addOrReplaceChild("hat", CubeListBuilder.create(), _default.head.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("head", CubeListBuilder.create(), _default.head.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("body", CubeListBuilder.create(), _default.body.storePose());
@@ -80,6 +81,14 @@ public class BananaSuitHelmet extends ArmorItem {
                 bananaHelmetPartDef.addOrReplaceChild("left_arm", CubeListBuilder.create(), _default.leftArm.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("right_leg", CubeListBuilder.create(), _default.rightLeg.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("left_leg", CubeListBuilder.create(), _default.leftLeg.storePose());
+                // Player mesh parts
+                bananaHelmetPartDef.addOrReplaceChild("ear", CubeListBuilder.create(), _default.head.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("cloak", CubeListBuilder.create(), _default.head.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("left_sleeve", CubeListBuilder.create(), _default.body.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("right_sleeve", CubeListBuilder.create(), _default.rightArm.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("left_pants", CubeListBuilder.create(), _default.leftArm.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("right_pants", CubeListBuilder.create(), _default.rightLeg.storePose());
+                bananaHelmetPartDef.addOrReplaceChild("jacket", CubeListBuilder.create(), _default.leftLeg.storePose());
                 // When calling bake, **BE SURE TO USE THE SAME DIMENSIONS AS THE TEXTURE IMAGE** (ex: (64, 64) means it's a 64px X 64px texture image)
                 HumanoidModel<?> replacement = new NaughtyMonkeysHumanoidModel<>(bananaHelmetPartDef.bake(64, 64));
                 ForgeHooksClient.copyModelProperties(_default, replacement);
