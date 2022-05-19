@@ -1,8 +1,11 @@
 package com.nuggylib.naughtymonkeys.client.model;
 
 import com.google.common.collect.ImmutableList;
+import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 
 /**
@@ -11,6 +14,8 @@ import net.minecraft.world.entity.LivingEntity;
  * @param <T>
  */
 public class NaughtyMonkeysHumanoidModel<T extends LivingEntity> extends HumanoidModel<T> {
+
+
 
     public final ModelPart banana_suit_helmet;
 

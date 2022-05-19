@@ -5,10 +5,7 @@ import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,7 +23,6 @@ public class BananaSuitHelmet extends ArmorItem {
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        System.out.println(String.format("naughtymonkeys:textures/item/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath()));
         return String.format("naughtymonkeys:textures/item/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath());
     }
 
@@ -84,7 +80,8 @@ public class BananaSuitHelmet extends ArmorItem {
                 bananaHelmetPartDef.addOrReplaceChild("left_arm", CubeListBuilder.create(), _default.leftArm.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("right_leg", CubeListBuilder.create(), _default.rightLeg.storePose());
                 bananaHelmetPartDef.addOrReplaceChild("left_leg", CubeListBuilder.create(), _default.leftLeg.storePose());
-                HumanoidModel<?> replacement = new NaughtyMonkeysHumanoidModel<>(bananaHelmetPartDef.bake(16, 16));
+                // When calling bake, **BE SURE TO USE THE SAME DIMENSIONS AS THE TEXTURE IMAGE** (ex: (64, 64) means it's a 64px X 64px texture image)
+                HumanoidModel<?> replacement = new NaughtyMonkeysHumanoidModel<>(bananaHelmetPartDef.bake(64, 64));
                 ForgeHooksClient.copyModelProperties(_default, replacement);
                 return replacement;
             }
