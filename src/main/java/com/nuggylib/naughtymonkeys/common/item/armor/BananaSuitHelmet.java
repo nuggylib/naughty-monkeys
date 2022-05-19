@@ -23,7 +23,7 @@ public class BananaSuitHelmet extends ArmorItem {
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return String.format("naughtymonkeys:textures/item/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath());
+        return String.format("naughtymonkeys:textures/armor/%s.png", NaughtyMonkeysItems.BANANA_SUIT_HELMET.getId().getPath());
     }
 
     /**
