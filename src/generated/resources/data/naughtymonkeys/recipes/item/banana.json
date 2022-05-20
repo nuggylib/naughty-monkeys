@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "naughtymonkeys",
+  "pattern": [
+    "b  "
+  ],
+  "key": {
+    "b": {
+      "item": "naughtymonkeys:banana_bunch"
+    }
+  },
+  "result": {
+    "item": "naughtymonkeys:banana",
+    "count": 4
+  }
+}
