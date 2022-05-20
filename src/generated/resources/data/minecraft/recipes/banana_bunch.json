@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "naughtymonkeys",
+  "ingredients": [
+    {
+      "item": "naughtymonkeys:banana_bunch"
+    }
+  ],
+  "result": {
+    "item": "naughtymonkeys:banana"
+  }
+}

@@ -3,6 +3,8 @@ package com.nuggylib.naughtymonkeys.data;
 import com.nuggylib.naughtymonkeys.common.NaughtyMonkeys;
 import com.nuggylib.naughtymonkeys.data.loot.NaughtyMonkeysLootTables;
 import com.nuggylib.naughtymonkeys.common.tag.NaughtyMonkeysTagsProvider;
+import com.nuggylib.naughtymonkeys.data.recipe.BlockRecipes;
+import com.nuggylib.naughtymonkeys.data.recipe.ItemRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,5 +27,7 @@ public class NaughtyMonkeysDataGenerators {
 
         generator.addProvider(new NaughtyMonkeysTagsProvider(generator, NaughtyMonkeys.ID, existingFileHelper));
         generator.addProvider(new NaughtyMonkeysLootTables(generator));
+        generator.addProvider(new ItemRecipes(generator));
+        generator.addProvider(new BlockRecipes(generator));
     }
 }
