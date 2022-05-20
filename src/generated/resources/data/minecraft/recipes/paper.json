@@ -1,15 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:sugar_cane"
+  "type": "minecraft:crafting_shapeless",
+  "group": "minecraft",
+  "ingredients": [
+    {
+      "item": "naughtymonkeys:banana_stem"
     }
-  },
+  ],
   "result": {
     "item": "minecraft:paper",
-    "count": 3
+    "count": 8
   }
 }
