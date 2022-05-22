@@ -2,6 +2,7 @@ package com.nuggylib.naughtymonkeys.common.entity;
 
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
+import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysSounds;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysTags;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.RangedMonkeyPooAttackGoal;
 import com.nuggylib.naughtymonkeys.common.world.entity.ai.goal.TemptOnlyByBananaHatWearersGoal;
@@ -144,26 +145,27 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
 
         this.readPersistentAngerSaveData(this.level, p_30402_);
     }
-    // TODO: Replace with monkey sound
+
+
+    @Override
     protected SoundEvent getAmbientSound() {
         if (this.isAngry()) {
-            return SoundEvents.WOLF_GROWL;
+            return NaughtyMonkeysSounds.MONKEY_ANGRY;
         } else if (this.random.nextInt(3) == 0) {
-            return this.isTame() && this.getHealth() < 10.0F ? SoundEvents.WOLF_WHINE : SoundEvents.WOLF_PANT;
+            return this.isTame() && this.getHealth() < 10.0F ? NaughtyMonkeysSounds.MONKEY_HAPPY : NaughtyMonkeysSounds.MONKEY_INQUISITIVE;
         } else {
-            return SoundEvents.WOLF_AMBIENT;
+            return NaughtyMonkeysSounds.MONKEY_AMBIENT;
         }
     }
-    // TODO: Replace with monkey sound
     protected SoundEvent getHurtSound(DamageSource p_30424_) {
-        return SoundEvents.WOLF_HURT;
+        return NaughtyMonkeysSounds.MONKEY_HURT;
     }
-    // TODO: Replace with monkey sound
     protected SoundEvent getDeathSound() {
-        return SoundEvents.WOLF_DEATH;
+        return NaughtyMonkeysSounds.MONKEY_DEATH;
     }
+
     protected float getSoundVolume() {
-        return 0.4F;
+        return 0.3F;
     }
     @Override
     public void aiStep() {
