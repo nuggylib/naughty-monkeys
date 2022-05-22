@@ -20,7 +20,7 @@
       }
     ]
   },
-  "entity.monkey_angry.death": {
+  "entity.monkey_death.death": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_death"
