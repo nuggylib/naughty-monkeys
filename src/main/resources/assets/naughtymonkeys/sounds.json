@@ -5,5 +5,47 @@
         "name": "naughtymonkeys:monkey_poo"
       }
     ]
+  },
+  "entity.monkey_inquisitive_1.ambient": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_inquisitive_1"
+      }
+    ]
+  },
+  "entity.monkey_angry.growl": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_angry"
+      }
+    ]
+  },
+  "entity.monkey_death.death": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_death"
+      }
+    ]
+  },
+  "entity.monkey_inquisitive_2.ambient": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_inquisitive_2"
+      }
+    ]
+  },
+  "entity.monkey_hurt.hurt": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_hurt"
+      }
+    ]
+  },
+  "entity.monkey_happy.ambient": {
+    "sounds": [
+      {
+        "name": "naughtymonkeys:monkey_happy"
+      }
+    ]
   }
 }
