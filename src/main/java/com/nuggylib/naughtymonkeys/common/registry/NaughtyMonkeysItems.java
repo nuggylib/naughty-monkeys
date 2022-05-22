@@ -31,11 +31,11 @@ public class NaughtyMonkeysItems {
     public static final RegistryObject<BlockItem> BANANA_LEAVES_ITEM = ITEMS.register("banana_leaves", () -> new BlockItem(NaughtyMonkeysBlocks.BANANA_LEAVES.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     public static final RegistryObject<BlockItem> BANANA_SAPLING_ITEM = ITEMS.register("banana_sapling", () -> new BlockItem(NaughtyMonkeysBlocks.BANANA_SAPLING.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     // Items
-    public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new ItemBanana(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
+    public static final RegistryObject<Item> BANANA = ITEMS.register("banana", () -> new ItemBanana(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS).food(NaughtyMonkeysFoods.BANANA)));
     public static final RegistryObject<Item> BANANA_HAT = ITEMS.register("banana_hat", BananaHat::new);
     public static final RegistryObject<Item> MONKEY_POO = ITEMS.register("monkey_poo", () -> new ItemMonkeyPoo(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
     // TODO: We may want to make this just a regular item - for now this is how you "plant" new bunches, which is weird
-    public static final RegistryObject<Item> BANANA_BUNCH = ITEMS.register("banana_bunch", () -> new ItemNameBlockItem(NaughtyMonkeysBlocks.BANANAS.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
+    public static final RegistryObject<Item> BANANA_BUNCH = ITEMS.register("banana_bunch", () -> new ItemNameBlockItem(NaughtyMonkeysBlocks.BANANAS.get(), new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS).food(NaughtyMonkeysFoods.BANANA_BUNCH)));
     public static final RegistryObject<Item> BANANA_PEEL = ITEMS.register("banana_peel", () -> new ItemBananaPeel(new Item.Properties().tab(NaughtyMonkeys.TAB_NAUGHTY_MONKEYS)));
 
 
