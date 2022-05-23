@@ -6,42 +6,42 @@
       }
     ]
   },
-  "entity.monkey_inquisitive_1.ambient": {
+  "entity.monkey.ambient": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_inquisitive_1"
       }
     ]
   },
-  "entity.monkey_angry.growl": {
+  "entity.monkey.growl": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_angry"
       }
     ]
   },
-  "entity.monkey_death.death": {
+  "entity.monkey.death": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_death"
       }
     ]
   },
-  "entity.monkey_inquisitive_2.ambient": {
+  "entity.monkey.curious": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_inquisitive_2"
       }
     ]
   },
-  "entity.monkey_hurt.hurt": {
+  "entity.monkey.hurt": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_hurt"
       }
     ]
   },
-  "entity.monkey_happy.ambient": {
+  "entity.monkey.happy": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_happy"
