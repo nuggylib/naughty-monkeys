@@ -172,14 +172,12 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
         this.updateSwingTime();
         this.updateNoActionTime();
         super.aiStep();
-
         if (!this.level.isClientSide && this.isWet && !this.isShaking && !this.isPathFinding() && this.onGround) {
             this.isShaking = true;
             this.shakeAnim = 0.0F;
             this.shakeAnimO = 0.0F;
             this.level.broadcastEntityEvent(this, (byte)8);
         }
-
         if (!this.level.isClientSide) {
             this.updatePersistentAnger((ServerLevel)this.level, true);
         }
