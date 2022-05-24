@@ -67,6 +67,7 @@ public class RangedMonkeyPooAttackGoal<T extends net.minecraft.world.entity.Mob 
     public void tick() {
         LivingEntity targetEntity = this.mob.getTarget();
         if (targetEntity != null) {
+
             List<ItemStack> armorSlots = (List<ItemStack>) targetEntity.getArmorSlots();
             boolean targetHasBananaHat = armorSlots.stream().filter(itemStack -> itemStack.getItem() instanceof BananaHat).toList().size() > 0;
             // Prevent hostile monkey behavior if target is wearing a banana hat

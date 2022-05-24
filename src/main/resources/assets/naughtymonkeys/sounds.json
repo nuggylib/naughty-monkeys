@@ -27,7 +27,7 @@
       }
     ]
   },
-  "entity.monkey_inquisitive_2.ambient": {
+  "entity.monkey_inquisitive_2.curious": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_inquisitive_2"
@@ -41,7 +41,7 @@
       }
     ]
   },
-  "entity.monkey_happy.ambient": {
+  "entity.monkey.happy": {
     "sounds": [
       {
         "name": "naughtymonkeys:monkey_happy"

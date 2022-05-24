@@ -22,12 +22,12 @@ public class NaughtyMonkeysSounds {
     @SubscribeEvent
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
         MONKEY_POO = registerSound("entity.monkey_poo.hit");
-        MONKEY_INQUISITIVE = registerSound("entity.monkey_inquisitive_2.ambient");
+        MONKEY_INQUISITIVE = registerSound("entity.monkey_inquisitive_2.curious");
         MONKEY_ANGRY = registerSound("entity.monkey_angry.growl");
         MONKEY_AMBIENT = registerSound("entity.monkey_inquisitive_1.ambient");
         MONKEY_DEATH = registerSound("entity.monkey_death.death");
         MONKEY_HURT = registerSound("entity.monkey_hurt.hurt");
-        MONKEY_HAPPY = registerSound("entity.monkey_happy.ambient");
+        MONKEY_HAPPY = registerSound("entity.monkey_happy.happy");
     }
 
     public static SoundEvent registerSound(String name) {
