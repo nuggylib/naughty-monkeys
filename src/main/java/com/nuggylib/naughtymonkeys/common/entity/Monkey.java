@@ -1,5 +1,6 @@
 package com.nuggylib.naughtymonkeys.common.entity;
 
+import com.nuggylib.naughtymonkeys.common.entity.ai.MonkeyBegGoal;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysEntities;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysItems;
 import com.nuggylib.naughtymonkeys.common.registry.NaughtyMonkeysSounds;
@@ -89,24 +90,22 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
 
         RangedMonkeyPooAttackGoal<Monkey> monkeyPooRangedAttackGoal = new RangedMonkeyPooAttackGoal<>(this, 1.0D, 50, 15.0F);
 
-        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-//        this.goalSelector.addGoal(9, new BegGoal(this, 8.0F));
-        this.goalSelector.addGoal(3, new TemptOnlyByBananaHatWearersGoal<>(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+        this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new MonkeyBegGoal(this, 8.0F));
+        this.goalSelector.addGoal(7, new TemptOnlyByBananaHatWearersGoal<>(this, 1.25D, Ingredient.of(NaughtyMonkeysItems.BANANA.get()), false));
+        this.goalSelector.addGoal(8, new FollowParentGoal(this, 1.25D));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(4, monkeyPooRangedAttackGoal);
 
         this.targetSelector.addGoal(0, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(5, new NonTameRandomTargetGoal<>(this, Animal.class, false, PREY_SELECTOR));
-//        this.targetSelector.addGoal(6, new NonTameRandomTargetGoal<>(this, Turtle.class, false, Turtle.BABY_ON_LAND_SELECTOR));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
         this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
@@ -145,8 +144,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
 
         this.readPersistentAngerSaveData(this.level, p_30402_);
     }
-
-
     @Override
     protected SoundEvent getAmbientSound() {
         if (this.isAngry()) {
@@ -163,7 +160,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
     protected SoundEvent getDeathSound() {
         return NaughtyMonkeysSounds.MONKEY_DEATH;
     }
-
     protected float getSoundVolume() {
         return 0.3F;
     }
@@ -192,7 +188,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
             } else {
                 this.interestedAngle += (0.0F - this.interestedAngle) * 0.4F;
             }
-
             if (this.isInWaterRainOrBubble()) {
                 this.isWet = true;
                 if (this.isShaking && !this.level.isClientSide) {
@@ -204,7 +199,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
                     this.playSound(SoundEvents.WOLF_SHAKE, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                     this.gameEvent(GameEvent.WOLF_SHAKING);
                 }
-
                 this.shakeAnimO = this.shakeAnim;
                 this.shakeAnim += 0.05F;
                 if (this.shakeAnimO >= 2.0F) {
@@ -213,12 +207,10 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
                     this.shakeAnimO = 0.0F;
                     this.shakeAnim = 0.0F;
                 }
-
                 if (this.shakeAnim > 0.4F) {
                     float f = (float)this.getY();
                     int i = (int)(Mth.sin((this.shakeAnim - 0.4F) * (float)Math.PI) * 7.0F);
                     Vec3 vec3 = this.getDeltaMovement();
-
                     for(int j = 0; j < i; ++j) {
                         float f1 = (this.random.nextFloat() * 2.0F - 1.0F) * this.getBbWidth() * 0.5F;
                         float f2 = (this.random.nextFloat() * 2.0F - 1.0F) * this.getBbWidth() * 0.5F;
@@ -226,7 +218,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
                     }
                 }
             }
-
         }
     }
     private void cancelShake() {
@@ -254,7 +245,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
         } else if (f > 1.0F) {
             f = 1.0F;
         }
-
         return Mth.sin(f * (float)Math.PI) * Mth.sin(f * (float)Math.PI * 11.0F) * 0.15F * (float)Math.PI;
     }
     public float getHeadRollAngle(float p_30449_) {
@@ -275,7 +265,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
             if (entity != null && !(entity instanceof Player) && !(entity instanceof AbstractArrow)) {
                 p_30387_ = (p_30387_ + 1.0F) / 2.0F;
             }
-
             return super.hurt(p_30386_, p_30387_);
         }
     }
@@ -284,7 +273,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
         if (flag) {
             this.doEnchantDamageEffects(this, p_30372_);
         }
-
         return flag;
     }
     @NotNull
@@ -296,17 +284,15 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
         } else {
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(8.0D);
         }
-
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0D);
     }
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         super.mobInteract(player, hand);
-
         ItemStack itemstack = player.getItemInHand(hand);
         Item item = itemstack.getItem();
         if (this.level.isClientSide) {
-            boolean flag = this.isOwnedBy(player) || this.isTame() || itemstack.is(Items.BONE) && !this.isTame() && !this.isAngry();
+            boolean flag = this.isOwnedBy(player) || this.isTame() || itemstack.is(NaughtyMonkeysItems.BANANA.get()) && !this.isTame() && !this.isAngry();
             return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
         } else {
             if (this.isTame()) {
@@ -314,12 +300,10 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
                     if (!player.getAbilities().instabuild) {
                         itemstack.shrink(1);
                     }
-
                     this.heal((float)item.getFoodProperties().getNutrition());
                     this.gameEvent(GameEvent.MOB_INTERACT, this.eyeBlockPosition());
                     return InteractionResult.SUCCESS;
                 }
-
                 if (!(item instanceof DyeItem)) {
                     InteractionResult interactionresult = super.mobInteract(player, hand);
                     if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
@@ -329,24 +313,20 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
                         this.setTarget((LivingEntity)null);
                         return InteractionResult.SUCCESS;
                     }
-
                     return interactionresult;
                 }
-
                 DyeColor dyecolor = ((DyeItem)item).getDyeColor();
                 if (dyecolor != this.getCollarColor()) {
                     this.setCollarColor(dyecolor);
                     if (!player.getAbilities().instabuild) {
                         itemstack.shrink(1);
                     }
-
                     return InteractionResult.SUCCESS;
                 }
             } else if (itemstack.is(NaughtyMonkeysItems.BANANA_BUNCH.get())) {
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
-
                 if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
                     this.tame(player);
                     this.navigation.stop();
@@ -356,14 +336,10 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
                 } else {
                     this.level.broadcastEntityEvent(this, (byte)6);
                 }
-
                 return InteractionResult.SUCCESS;
             }
-
             return super.mobInteract(player, hand);
         }
-
-//        return super.mobInteract(player, hand);
     }
     public void handleEntityEvent(byte p_30379_) {
         if (p_30379_ == 8) {
@@ -385,7 +361,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
             return this.isTame() ? (0.55F - (this.getMaxHealth() - this.getHealth()) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
         }
     }
-    // TODO: Add other food items (e.g., BANANA_BUNCH)
     @Override
     public boolean isFood(ItemStack itemStack) {
         return itemStack.is(NaughtyMonkeysItems.BANANA.get()) || itemStack.is(NaughtyMonkeysItems.BANANA_BUNCH.get());
@@ -480,7 +455,6 @@ public class Monkey extends TamableAnimal implements RangedAttackMob, NeutralMob
         if (f > 0.5F) {
             this.noActionTime += 2;
         }
-
     }
     public float getHeadEatAngleScale(float p_29883_) {
         if (this.eatAnimationTick > 4 && this.eatAnimationTick <= 36) {
